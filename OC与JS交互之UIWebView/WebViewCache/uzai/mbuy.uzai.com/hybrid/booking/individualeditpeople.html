@@ -1,0 +1,110 @@
+<meta charset="UTF-8">
+<div class="edit-bg">
+    <div class="edit-header border-bot">
+        <a href="#/individualtravepeople" ng-click="hideTips()" class="hideTips">
+            <i class="iconfont icon-back"></i>
+        </a>
+        <b id="title">编辑出游人信息</b>
+        <em ng-click="insertPeople()">保存</em>
+    </div>
+    <div id="edit-wrapper" class="wrapper2" individual-edit-people>
+        <div>
+            <input type="hidden" id="paperid" value="">
+            <p class="edit-title">基本信息</p>
+            <div class="edit-people basic-information">
+                <ul>
+                    <li ng-show="SKU.TouristsInfo|iscontains:'1'">
+                        <b>中文姓名<em class="yuanshixin"></em></b>
+
+                        <div class="border-bot">
+                            <input type="text" placeholder="与证件姓名一致" class="name defaultP" maxlength="20" ng-blur="destory1()" value="" class="j_input_key">
+                            <em class="name-tips  myTips" style="display: none;">请输入正确的姓名</em>
+                        </div>
+
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'2'">
+                        <b>英<em class="nbsp2"></em>文<em class="nbsp2"></em>姓<em class="yuanshixin"></em></b>
+
+                        <div class="border-bot">
+                            <input type="text" placeholder="Last Name" class="name defaultP j_input_key" maxlength="20" ng-blur="destory1()" value="">
+                            <em class="name-tips  myTips" style="display: none;">请输入正确的英文姓</em>
+                        </div>
+
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'2'">
+                        <b>英<em class="nbsp2"></em>文<em class="nbsp2"></em>名<em class="yuanshixin"></em></b>
+
+                        <div class="border-bot">
+                            <input type="text" placeholder="First Name" class="name defaultP j_input_key" maxlength="20" ng-blur="destory1()" value="">
+                            <em class="name-tips  myTips" style="display: none;">请输入正确的英文名</em>
+                        </div>
+
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'4'">
+                        <b>性<em class="nbsp1"></em>别<em class="yuanshixin"></em></b>
+                        <div class="border-bot">
+                            <i class="sex nan active">男</i>
+                            <i class="sex nv">女</i>
+                        </div>
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'3'">
+                        <b>出生日期<em class="yuanshixin"></em></b>
+                        <div class="border-bot right-bg">
+                            <span class="hideElement" edit-date="">
+                                <input type="date" placeholder="出游人出生日期" value="1980-01-01" class="date defaultP">
+                                <!--<em class="enen">出游人出生日期</em>-->
+                            </span>
+                         </div>
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'5'">
+                        <b>手<em class="nbsp2"></em>机<em class="nbsp2"></em>号<em class="yuanshixin"></em></b>
+                        <div class="border-bot">
+                            <input type="tel" placeholder="出游人手机号" onblur="ValidateNumber(this,11)" onkeyup="ValidateNumber(this,11)" onkeypress="ValidateNumber(this,11)" class="phone defaultP j_input_key">
+                            <em class="phone-tips  myTips" style="display: none;">请输入正确的手机号</em>
+                        </div>
+                    </li>
+                    <li  ng-show="SKU.TouristsInfo|iscontains:'6'">
+                        <b>国<em class="nbsp1"></em>籍<em class="yuanshixin"></em></b>
+                        <div class="border-bot">
+                            <input type="text" value="中国大陆" class="nationality defaultP j_input_key" maxlength="10" onblur="validate(this,4)">
+                            <em class="nation paper-tips  myTips nationality-tips" style="display: none;">国籍只能是中英文</em>
+
+                            <!--<i class="nationality">中国大陆</i>-->
+                        </div>
+                    </li>
+                </ul>
+                </div>
+
+                <p class="information-title" ng-show="papers!=null&&papers.length>0">
+                    <b>证件信息</b>
+                </p>
+                <div class="edit-people document-information" ng-show="papers!=null&&papers.length>0">
+                    <ul>
+                        <li>
+                            <b>证件类型<em class="yuanshixin"></em></b>
+                            <div class="border-bot right-bg">
+                                <!--<select id="passportofpaper" class="passport">
+                                        <option label="护照" selected="selected">护照</option>
+                                        <option label="港澳通行证">港澳通行证</option>
+                                        <option label="台湾通行证" >台湾通行证</option>
+                                </select>-->
+                                <select id="passportofpaper" ng-model="editpeopleselect" ng-options="x.val as x.name for x in papers" class="passport"></select>
+                            </div>
+                            <em class="paperid paper-tips  myTips" style="display: none;">请选择证件类型</em>
+                        </li>
+                        <li>
+                            <b>证<em class="nbsp2"></em>件<em class="nbsp2"></em>号<em class="yuanshixin"></em></b>
+                            <div class="border-bot">
+                                <input type="text" placeholder="出游人证件号" class="numberId defaultP j_input_key" minlength="20" maxlength="20">
+                                <em class="paperid paper-tips  myTips" style="display: none;">证件号有误</em>
+                            </div>
+                        </li>
+                   
+                    </ul>
+                </div>
+                <div class="justBg">
+
+                </div>
+            </div>
+        </div>
+    </div>

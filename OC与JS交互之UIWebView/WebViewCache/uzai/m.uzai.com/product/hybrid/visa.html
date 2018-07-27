@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<!-- 签证页面 子页面-->
+<link href="../../../r03.uzaicdn.com/content/hybrid/styles/product/visa.css?v=20170921183141" rel="stylesheet">
+
+
+
+<!-- 头部 开始 -->
+<!-- 头部 开始 -->
+<header class="hd">
+    <!-- 滑动的时候北京变由透明变实 -->
+    <a onclick="api.routerGoBack();" class="back" ><i class="iconfont icon-back"></i></a>签证信息
+</header>
+<!-- 头部 结束 -->
+<div id="j_visa_wrapper " class="visa J-router-content">
+    <div id="j_visa_scroller" class="visascoller" find-purchase1>
+
+        <div class="visacon" >
+          <i class="iconfont icon-visainfo"></i>
+          <div class="visadata" ng-bind-html="VisaInfo |trustHtml"></div>
+        </div>
+
+    </div>
+</div>

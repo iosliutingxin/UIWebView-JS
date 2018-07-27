@@ -1,0 +1,37 @@
+<meta charset="UTF-8">
+<!-- 行程信息子页 -->
+<div class="buynoticepage">
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 费用须知
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content" id="j-purchase-wrapper">
+        <div class=" purchase" id="j-purchase-scroller">
+
+            <div class="buynoticecon" ng-show="JouneryGroups[0].CostInclude!=''">
+                <div class="icon booknotice">
+                    <i class="iconfont icon-costnotinclude"></i>
+                    <i>费用包含</i>
+                    <i class="iconfont tubiao icon-top fr"></i>
+                </div>
+                <div class="editorcon border-top booknoticecon" ng-bind-html="JouneryGroups[0].CostInclude | trustHtml">
+
+                </div>
+            </div>
+
+            <div class="buynoticecon mt20" ng-show="JouneryGroups[0].CostNotInclude!=''" find-purchase3>
+                <div class="icon contain">
+                    <i class="iconfont icon-costnotincludes"></i>
+                    <i>费用不包含</i>
+                    <i class="iconfont tubiao icon-top fr"></i>
+                </div>
+                <div class="editorcon border-top containcon disnone border-top" ng-bind-html="JouneryGroups[0].CostNotInclude | trustHtml">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

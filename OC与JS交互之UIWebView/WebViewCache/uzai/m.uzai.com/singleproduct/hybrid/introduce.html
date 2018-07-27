@@ -1,0 +1,16 @@
+<meta charset="UTF-8">
+<!-- 产品介绍子页 -->
+
+
+<div class="troduce-page">
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a class="back" onclick="api.routerGoBack();"><i class="iconfont icon-back"></i></a> 产品介绍
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content troduce-page">
+        <div class="introducecon" ng-bind-html="ProductInfo.Description | trustHtml" find-introduce>
+        </div>
+    </div>
+</div>

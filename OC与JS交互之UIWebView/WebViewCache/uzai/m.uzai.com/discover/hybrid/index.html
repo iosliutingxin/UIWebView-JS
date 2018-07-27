@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app='myApp' style='font-size: 50px'>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+
+    <meta name="keywords" content="">
+    <meta name="description" content="众信悠哉旅行带您发现最新最潮旅游玩法，热门旅游线路，更多惊喜，尽在众信悠哉旅游网。
+">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170911112852"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/base.css?v=20170911112852" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/index.css?v=20170911112852" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/template/navigationfont.css?v=20170911112852" type="text/css" rel="stylesheet">
+
+    <title>发现-众信悠哉旅行手机站</title>
+</head>
+<body>
+    <div class="content" ng-controller="findCtrl" load-more="loadMore()">
+        <!-- 头部 -->
+        <header class="bg-transparent white-topbar">
+            <a target="_self" href="https://m.uzai.com" class="fl top-back"><i class="left-ico black-ico"></i></a>
+            <a target="_self" class="fr"></a>
+            <div class="title_img"><img src='../../../r03.uzaicdn.com/content/hybrid/images/discover/find.png?v=43f18488f8' /></div>
+        </header>
+        <!-- 内容 -->
+        <div class='main'>
+            <div class='main_nav pab' hidden>
+                <ul>
+                    <li class='selected'><a href='#'>人气</a></li>
+                    <li><a href='#'>最新</a></li>
+                </ul>
+            </div>
+
+            <div class='main_img swiper-containerS'>
+                <div class='swiper-wrapper'>
+                    <div class='main_img1 swiper-slide' ng-repeat='value in labes' find-dir>
+                        <!-- <div class='frame_img'>
+                                 <span class='f30' ng-bind='value.Name'></span>
+                                 <span class='f22' ng-bind='value.E_Name'></span>
+                             </div> -->
+                        <img ng-src={{value.PictureUrl}} data-id="{{value.Id}}" /><div class='ceng'></div>
+                    </div>
+                    <div class='clear'></div>
+                </div>
+            </div>
+            <div class='main_nav' hidden>
+                <ul>
+                    <li class='selected'><a href='#'>人气</a></li>
+                    <li><a href='#'>最新</a></li>
+                </ul>
+            </div>
+            <div id='wrapper' class='wrapper'>
+                <div>
+                    <div class='wrapper_main'>
+                        <div class='swiper-wrapper'>
+                            <div class='main_list swiper-slide'>
+
+                                <div class='main_list_i' ng-repeat='value2 in subjectlist' find-dir1>
+                                    <div ng-click="jumptoActive(this)" td="{{value2.Id}}" tt="{{value2.Labels}}">
+                                        <div class='main_list_img'>
+                                            <img data-src={{value2.CoverImgUrl}} />
+                                        </div>
+                                        <div class='main_list_a'>
+                                            <h2 ng-bind='value2.SubjectName'></h2>
+                                            <div class='main_list_a1'><a class='collection' ng-bind="value2.FavoriteCount"></a><a class='browse' ng-bind="value2.VisitsNum"></a></div>
+                                            <div class='main_list_a2'><div ng-if="value2.Labels.length>0"><a ng-repeat='labelname in value2.Labels'><span ng-if="labelname" ng-bind='labelname'></span></a></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='main_list swiper-slide'>
+
+                                <div class='main_list_i' ng-repeat='value2 in subjectlist2' find-dir2>
+                                    <div ng-click="jumptoActive(this)" tt="{{value2.Labels}}">
+                                        <div class='main_list_img'>
+                                            <img data-src={{value2.CoverImgUrl}} />
+                                        </div>
+                                        <div class='main_list_a'>
+                                            <h2 ng-bind='value2.SubjectName'></h2>
+                                            <div class='main_list_a1'><a class='collection' ng-bind="value2.FavoriteCount"></a><a class='browse' ng-bind="value2.VisitsNum"></a></div>
+                                            <div class='main_list_a2'><a ng-repeat='labelname in value2.Labels'><span ng-bind='labelname'></span></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer class="com-footer-nav border-top">
+        <a href="https://m.uzai.com">
+            <i class="iconfont icon-comfooter-shouye"></i>
+            <em>首页</em>
+        </a>
+        <a href="https://m.uzai.com/o/Sale">
+            <i class="iconfont icon-comfooter-temai"></i>
+            <em>特卖会</em>
+        </a>
+        <a class="citybtn" href="https://m.uzai.com/search/category">
+            <i class="iconfont icon-comfooter-mudedi"></i>
+            <em>目的地</em>
+        </a>
+        <a class="on">
+            <i class="iconfont icon-comfooter-faxian"></i>
+            <em>发现</em>
+        </a>
+        <a href="https://mhome.uzai.com/Member/index.html">
+            <i class="iconfont icon-comfooter-wode"></i>
+            <em>我的</em>
+        </a>
+    </footer>
+    <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/custom/iscroll.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper-3.3.1.min.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/discover/index.js?v=20170911112852"></script>
+    <script type="text/javascript">
+(function() {
+    window.BMap_loadScriptTime = (new Date).getTime();
+
+})();
+
+    </script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api-map.js?v=20170911112852"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<meta charset="UTF-8" />
+
+<div class="bdlocationpage"  ng-if="BoardingLocationList.length>0">
+    <div class="trave-header border-bot">
+        <div class="hdout">
+            <a onclick="api.routerGoBack()" class="back" ng-click="tarveBack()"><i class="iconfont icon-back"></i></a>
+            <b>选择上车地点</b>
+        </div>
+    </div>
+    <div class="mart1" id="store-wrapper">
+        <div class="bdlocaion-mk" ng-repeat="BoardingLocation in BoardingLocationList" ng-class="{active:$first}">
+            <div class="bdlocaion">
+                <div class="bdlocaion-bg">
+                    <em>上车时间：</em>
+                    <i ng-bind="BoardingLocation.BoardingTime"></i>
+                </div>
+            </div>
+            <div class="bdlocaion">
+                <div class="bdlocaion-bg">
+                    <em>发车地点：</em>
+                    <i ng-bind="BoardingLocation.DepartLocation"></i>
+                </div>
+            </div>
+            <div class="bdlocaion">
+                <div class="bdlocaion-bg">
+                    <em>返回地点：</em>
+                    <i ng-bind="BoardingLocation.BackLocation"></i>
+                </div>
+            </div>
+            <p class="location-note" ng-if='BoardingLocation.Remark!=""'>＊{{BoardingLocation.Remark}}</p>
+
+        </div>
+    </div>
+   
+</div>
+
+<!--<script type="text/javascript-lazy">
+    var _bdlocaionmk = document.getElementsByClassName('bdlocaion-mk');
+    for (var i = 0; i < _bdlocaionmk.length; i++) {
+        _bdlocaionmk[i].onclick = function() {
+            Array.prototype.filter.call(_bdlocaionmk, function(child) {
+                child.classList.remove('active');
+            });
+            this.classList.add('active');
+        };
+    }
+</script>-->

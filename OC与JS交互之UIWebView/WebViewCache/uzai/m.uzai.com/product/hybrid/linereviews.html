@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+<!-- 点评页面 子页面-->
+<header class="hd">
+    <!-- 滑动的时候北京变由透明变实 -->
+    <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 线路点评
+</header>
+<!-- 头部 结束 -->
+<div class="content linereviews detail" ng-controller="mreviewController" id="j_linereviews_wrapper" >
+    <div class="comment linereviews-scroller" id="j_linereviews_scroller" load-morereview  >
+
+
+            <!-- 一条开始 -->
+            <div class="part" ng-repeat="TalkBackInfo in remarkList" find-re>
+                <div class="head layout-box">
+                    <div class="photo son-box">
+                        <div class="img">
+                            <img ng-src="{{TalkBackInfo.HeadUrl}}" src="" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/pho-default.png?v=1505188845'"><i ng-bind="TalkBackInfo.UserGradeName"></i>
+                        </div>
+                        <div class="info">
+                            <span ng-bind="TalkBackInfo.UzaiOrderUserName"></span>
+                            <span><i class="iconfont icon-time"></i>{{TalkBackInfo.editDate}}</span>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <i class="iconfont {{TalkBackInfo.UsrComentWayClass}}"></i>满意度<em class="num" ng-bind="TalkBackInfo.UsrSatisfactionRate"></em>
+                    </div>
+                </div>
+                <p class="text" ng-bind="TalkBackInfo.TalkBackSummary"></p>
+
+                <!-- 此处图片手动轮播 点击能看大图  查看大图的时候  也要能切换 -->
+                <div class="img-ls swiper-container-comment">
+                    <ul class="swiper-wrapper j-img-show">
+                        <li class="swiper-slide" ng-repeat="imginfo in TalkBackInfo.CommentImages" find-comment-pop>
+                            <div class="swiper-lazy-preloader"></div>
+                            <img class="img-lazy swiper-lazy" data-src="" data-self="{{ imginfo.Images }}" data-large="{{imginfo.LargeImages}}" src="" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/comment-default.jpg?v=2667308010'">
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bot"><i class="iconfont icon-praise"></i><span class="btn" ng-if="TalkBackInfo.TalkBackStay!=null" ng-bind="TalkBackInfo.TalkBackStay"></span><span class="btn" ng-bind="TalkBackInfo.TalkBackTraffic"></span><span class="btn" ng-bind="TalkBackInfo.TalkBackCustomerService"></span><span class="btn" ng-bind="TalkBackInfo.TalkBackGuide"></span></div>
+            </div>
+            <!-- 一条结束 -->
+
+    </div>
+</div>

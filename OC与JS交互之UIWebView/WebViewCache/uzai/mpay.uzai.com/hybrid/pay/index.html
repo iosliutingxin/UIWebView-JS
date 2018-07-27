@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html ng-app="uzai">
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta https-equiv="Expires" content="-1">
+    <meta https-equiv="Cache-Control" content="no-cache">
+    <meta https-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/booking.css?v=20170921183141" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/book-payment.css?v=20170921183141" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/book-sub-page.css?v=20170921183141" rel="stylesheet">
+    <style type="text/css">
+        @charset "UTF-8";
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+    </style>
+    <title>支付订单</title>
+</head>
+<body ng-controller="Payment" ng-cloak>
+    <!-- 此外,二级页面都是拉出来的那种效果 -->
+    <div id='uzai-wrapper' class='uzai-wrapper'>
+        <!-- 头部 开始 -->
+        <header class="white-topbar">
+            <!-- 滑动的时候北京变由透明变实 -->
+            <div class="con border-bot">
+                <a class="back fl" ng-click="goBack(false)"><i class="iconfont icon-back"></i></a>
+                <div class="fr">
+                    <a class="more" href="tel:{{Telphone}}"><i class="iconfont icon-telphone"></i></a>
+                </div>
+                <div class="title">
+                    <h1>2/2支付订单</h1>
+                </div>
+            </div>
+        </header>
+        <!-- 头部 结束 -->
+        <div class="payment">
+            <div class="">
+                <div class="icon-main-top">
+                    <i></i>
+                </div>
+                <div class="icon-main-top-0">
+                    <div class="iconfont icon-bankcard">
+                    </div>
+                    <i></i>
+                </div>
+                <div class="main1">
+                    <div class="main1-top-0">
+                    </div>
+                    <div class="main1-top-1">
+                        <h2 id="ProductName" ng-bind-html="paymentInfo.OrderDetail.UzaiOrder.ProductName| trustHtml"></h2>
+                    </div>
+                    <div class="main1-top-2 border-top">
+                        <span class="money-lf"><i class="iconfont icon-money"></i>应付总额：<em>￥{{orderPrepayMent}}</em></span>
+                        <a class="btn fr j_detailed" ng-click="showOrderDetail()">核对明细</a>
+                    </div>
+                </div>
+                <!-- 支付方式 开始 -->
+                <div class="list-con border-bot">
+                    <div class="nav-t layout-box border-top">
+                        <div class="tit son-box">
+                            <i class="iconfont icon-qianbao"></i>选择支付方式
+                        </div>
+                        <div class="fr j_showbank" ng-show="!showAllBanks" ng-click="showAllBanks=true">
+                            更换<i class="iconfont icon-bottom"></i>
+                        </div>
+                        <div class="fr j_closebank" ng-show="showAllBanks" ng-click="showAllBanks=false">
+                            收起<i class="iconfont icon-top"></i>
+                        </div>
+                    </div>
+                    <!--<div class="pay-tip border-top" ng-if="paymentInfo && !paymentInfo.IsPayPreferential && !paymentInfo.PrefIsExpired && paymentInfo.PreferentialName!=''">
+                        <i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【{{paymentInfo.PreferentialName}}】，当前平台支付方式不支持。如您选择当前平台支付方式，系统将为您重新推荐优惠方案。
+                    </div>
+                    <div class="pay-tip border-top" ng-if="paymentInfo && paymentInfo.PrefIsExpired && paymentInfo.PreferentialName!=''">
+                        <i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【{{paymentInfo.PreferentialName}}】已下线，系统将为您重新推荐优惠方案。
+                    </div>
+                    <div class="pay-tip border-top" ng-if="paymentInfo && !paymentInfo.IsPayPreferential && !paymentInfo.PrefIsExpired && paymentInfo.PreferentialName!='' && !isshowapplepay && isios">
+                        <i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【{{paymentInfo.PreferentialName}}】，当前平台不能享受【App版本过低/手机系统版本过低/ApplePay支付功能没绑银行卡/手机型号不支持】。如您选择当前平台支付方式，系统将为您重新推荐优惠方案。
+                    </div>-->
+                    <div class="pay-tip border-top" ng-switch="CaseTost">
+                        <span ng-switch-when="1"><i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【<i ng-bind="paymentInfo.PreferentialName"></i>】，当前平台支付方式不支持。如您选择当前平台支付方式，系统将为您重新推荐优惠方案。</span>
+                        <span ng-switch-when="2"><i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【<i ng-bind="paymentInfo.PreferentialName"></i>】已下线，系统将为您重新推荐优惠方案。</span>
+                        <span ng-switch-when="3"><i class="iconfont icon-bookingnotice"></i>支付提示：您参加的活动【<i ng-bind="paymentInfo.PreferentialName"></i>】，当前平台不能享受【App版本过低/手机系统版本过低/ApplePay没绑银行卡/手机型号不支持】。如您选择当前平台支付方式，系统将为您重新推荐优惠方案。</span>
+                    </div>
+                    <ul class="com-nav border-top">
+                        <li class="layout-box border-bot radio-l" ng-class="setBankClass(bank)"
+                            ng-repeat="bank in paymentInfo.Banks">
+                            <div class="tit son-box" ng-click="changeBank(bank.BankID)">
+                                <i class=""><img ng-src="{{bank.BankImg}}" /></i><i class="" ng-bind="bank.BankName"></i>
+                                <img ng-show="bank.BankCode=='ApplePay'" src='../../../r03.uzaicdn.com/content/hybrid/images/booking/bank/applepay.jpg?v=1140415306' class="applepay" />
+                                <img ng-show="bank.BankCode=='QuickUnionPay'" src='../../../r03.uzaicdn.com/content/hybrid/images/booking/bank/quickunionpay.png?v=1731193643' class="quickunionpay" />
+                                <span class="red" ng-show="bank.PayPreferentials[0].PreferentialType==1">立减<i ng-bind="bank.PayPreferentials[0].PreferentialMoney"></i>元</span>
+                                <span class="info-red w-red" ng-show="bank.PayPreferentials && bank.PayPreferentials[0].PreferentialType==4 && bank.BankCode=='ApplePay'"><i ng-bind="bank.PayPreferentials[0].PreferentialName"></i></span>
+                                <span class="info-red" ng-show="bank.PayPreferentials && bank.PayPreferentials[0].PreferentialType==4 && bank.BankCode!='ApplePay'"><i ng-bind="bank.PayPreferentials[0].PreferentialName"></i></span>
+                            </div>
+                            <div class="fr radio-btn">
+                                <input type="radio" name="BankCode" ng-click="changeBank(bank.BankID)" />
+                                <i class="iconfont icon-round"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 支付方式 结束 -->
+                <!-- 优惠方案 开始 -->
+                <div class="discount-con border-bot" ng-if="showPreferentials">
+                        <div class="nav-t layout-box border-top">
+                            <div class="tit son-box">
+                                <i class="iconfont icon-discount-m"></i>优惠方案
+                            </div>
+                        </div>
+                    <div class="center border-top" ng-if="currentBank.PayPreferentials[0].PreferentialType!=4" ng-repeat="prefer in currentBank.PayPreferentials">
+                        <p>
+                            <span ng-bind="prefer.PreferentialTypeName"></span>
+                            <label ng-bind="prefer.PreferentialName"></label>
+                        </p>
+                    </div>
+                        <ul class="com-nav">
+                            <li class="layout-box border-top" ng-if="!activeCodeInfo.disabled && !paymentInfo.IsHold">
+                                <div class="tit son-box">
+                                    <i class=""></i>优惠券
+                                </div>
+                                <a href="#/selectcoupons" ng-click="selectCard()">
+                                    <!--未选优惠券-->
+                                    <div class="fr right-btn" id="chooseCoupons" ng-if="!lijianPreferential">
+                                        未选择<i class="iconfont icon-right"></i>
+                                    </div>
+                                    <!--已选优惠券 或 与立减互斥 -->
+                                    <div class="fr right-btn" id="chooseCoupons" ng-if="lijianPreferential">
+                                        与<i ng-bind="lijianPreferential.PreferentialTypeName"></i>不可同享<i class="iconfont icon-right"></i>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="layout-box border-top pad-nor radio-l" ng-if="!pointInfo.disabled && !paymentInfo.IsHold" ng-class="{'on': pointInfo.usePoint}">
+                                <div class="tit son-box">
+                                    积分<i class="question-btn" ng-click="pointExplain()">?</i>
+                                    <span class="fr" ng-if="pointInfo.totalPoint>=50">
+                                        您有<i ng-bind="pointInfo.pointText"></i>积分可抵
+                                        <em class="red" ng-bind="pointInfo.pointMoney"></em>元
+                                    </span>
+                                    <span class="fr" ng-if="pointInfo.totalPoint<50">您无可用积分</span>
+                                </div>
+                                <div class="fr radio-btn" ng-if="pointInfo.totalPoint>=50">
+                                    <input type="checkbox" name="integrate" ng-click="choosePoint()" ng-disabled="pointInfo.point<50">
+                                    <i class="iconfont icon-round gray"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 优惠方案 结束 -->
+                    <div class="height-3">
+                    </div>
+                </div>
+            </div>
+            <!-- 底部 开始 -->
+            <footer class="payment-footer">
+                <div class="foot">
+                    <div class="agreement radio-l" ng-class="{'on': agreeContract}">
+                        我已阅读并同意
+                        <a class="red" ng-click="showContract()" ng-bind="ContractTitle"></a>
+                        <div class="fr radio-btn">
+                            <input type="checkbox" name="agreement" ng-model="agreeContract">
+                            <i class="iconfont icon-round gray"></i>
+                        </div>
+                    </div>
+                    <div class="btn-reg border-top">
+                        <a class="reservation-btn" ng-click="pay()" ng-class="{'disable':!(agreeContract && currentBank)}">立即支付</a>
+                    </div>
+                </div>
+            </footer>
+            <div class="popup">
+                <span>优惠大于应付金额请联系客服协助您预订</span>
+            </div>
+            <!-- 底部 结束 -->
+            <div class="mask" ng-show="showExtraMoneyMask || showDetailMask || showPoint || showError || showCancelMask" ng-click="clickMask()">
+            </div>
+            <!-- 核对明细 开始 -->
+            <div class="detailed-pop" ng-if="showDetailMask">
+                <div class="top">
+                    <p class="title">核对明细</p>
+                </div>
+                <div class="overhidden-box">
+                    <div class="scroll-box" id="detailed-pop">
+                        <div class="con">
+                            <p class="text" ng-bind-html="paymentInfo.OrderDetail.UzaiOrder.ProductName| trustHtml"></p>
+                            <p class="bot border-bot">
+                                <i class="iconfont icon-money"></i>
+                                应付总额：<em class="red">￥<label ng-bind="orderPrepayMent"></label></em>
+                            </p>
+                        </div>
+                        <div class="center">
+                            <div class="part border-bot" ng-if="paymentInfo.OrderDetail.UzaiOrderSonList.length > 0 > 0">
+                                <p class="tit">拆单信息</p>
+                                <p ng-repeat="subOrder in paymentInfo.OrderDetail.UzaiOrderSonList">
+                                    <span class="fl txt-cut">
+                                        <i ng-bind="subOrder.name"></i>(
+                                        <em ng-if="subOrder.State==1">已支付</em>
+                                        <em ng-if="subOrder.State==0" class="red">未支付</em>
+                                        <em ng-if="subOrder.State==2" class="red">取消</em>）
+                                        <i ng-if="subOrder.DingJin=='订金'" class="iconfont icon-ding"></i>
+                                    </span>
+                                    <span class="fr red">￥<i ng-bind="subOrder.Payprice"></i></span>
+                                </p>
+                            </div>
+                            <div class="part border-bot">
+                                <p class="tit">联系人</p>
+                                <p>
+                                    <span class="fl txt-cut" ng-bind="paymentInfo.OrderDetail.UzaiOrder.UserName"></span>
+                                    <span class="fr" ng-bind="paymentInfo.OrderDetail.UzaiOrder.Tel"></span>
+                                </p>
+                            </div>
+                            <div class="part border-bot">
+                                <p class="tit">出游人</p>
+                                <p ng-repeat="user in paymentInfo.OrderDetail.UzaiOrderOtherUser">
+                                    <span class="fl txt-cut" ng-bind="user.UserName"></span>
+                                    <span class="fr" ng-bind="user.DocumentsCode"></span>
+                                </p>
+                            </div>
+                            <div class="part border-bot">
+                                <p class="tit">团费</p>
+                                <p ng-show="paymentInfo.OrderDetail.UzaiOrder.AuditFee">
+                                    <span class="fl">成人</span>
+                                    <span class="fr red">￥<label ng-bind="paymentInfo.OrderDetail.UzaiOrder.AuditFee"></label></span>
+                                </p>
+                                <p ng-show="paymentInfo.OrderDetail.UzaiOrder.ChildFee">
+                                    <span class="fl">儿童</span>
+                                    <span class="fr red">￥<label ng-bind="paymentInfo.OrderDetail.UzaiOrder.ChildFee"></label></span>
+                                </p>
+                            </div>
+                            <div class="part border-bot" ng-if="paymentInfo.OrderDetail.AdditionalProduct.length > 0 || additionalExtras.length > 0">
+                                <p class="tit">附加产品</p>
+                                <p ng-repeat="additional in paymentInfo.OrderDetail.AdditionalProduct">
+                                    <span class="fl txt-cut" ng-bind="additional.TypeName"></span>
+                                    <span class="fr red">￥<label ng-bind="additional.PriceAll"></label></span>
+                                </p>
+                                <p ng-repeat="additionalExtra in additionalExtras">
+                                    <span class="fl txt-cut" ng-bind="additionalExtra.ModifyName"></span>
+                                    <span class="fr red">￥<label ng-bind="additionalExtra.ModefyPirce"></label></span>
+                                </p>
+                            </div>
+                            <div class="part border-bot" ng-if="(currentBank && currentBank.PayPreferentials && currentBank.PayPreferentials.length > 0 && currentBank.PayPreferentials[0].PreferentialType!=4) || (!currentBank && paymentInfo.OrderDetail.UzaiPreferentialRecord.length > 0 && paymentInfo.IsPayPreferential && !paymentInfo.PrefIsExpired) || pointInfo.usePoint || activeCodeInfo.isUseCoupons || preferentialExtras.length > 0">
+                                <p class="tit">优惠</p>
+                                <div ng-if="currentBank && currentBank.PayPreferentials && currentBank.PayPreferentials[0].PreferentialType!=4">
+                                    <p ng-repeat="prefer in currentBank.PayPreferentials" ng-if="prefer.PreferentialType!=4">
+                                        <span class="fl txt-cut" ng-bind="prefer.PreferentialName"></span>
+                                        <span class="fr red">-￥<label ng-bind="prefer.PreferentialMoney"></label></span>
+                                    </p>
+                                </div>
+                                <div ng-if="!currentBank && paymentInfo.OrderDetail && paymentInfo.OrderDetail.UzaiPreferentialRecord">
+                                    <p ng-repeat="prefer in paymentInfo.OrderDetail.UzaiPreferentialRecord">
+                                        <span class="fl txt-cut" ng-bind="prefer.PreferentialName"></span>
+                                        <span class="fr red">-￥<label ng-bind="prefer.TotalMoney"></label></span>
+                                    </p>
+                                </div>
+                                <p ng-if="pointInfo.usePoint">
+                                    <span class="fl">积分</span>
+                                    <span class="fr red">-￥<label ng-bind="pointInfo.pointMoney"></label></span>
+                                </p>
+                                <p ng-if="activeCodeInfo.isUseCoupons">
+                                    <span class="fl">优惠券</span>
+                                    <span class="fr red">-￥<label ng-bind="activeCodeInfo.couponsPrice"></label></span>
+                                </p>
+                                <p ng-repeat="preferentialExtra in preferentialExtras">
+                                    <span class="fl txt-cut" ng-bind="preferentialExtra.ModifyName"></span>
+                                    <span class="fr red">-￥<label ng-bind="-preferentialExtra.ModefyPirce"></label></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="close-btn iconfont icon-guanbi" ng-click="clickMask()"></a>
+            </div>
+            <!-- 核对明细 结束 -->
+            <!-- 积分使用说明 -->
+            <div id="cal-pop1" ng-if="showPoint">
+                <div class="pop-container">
+                    <div class="title">
+                        <i class="iconfont icon-ownpay"></i>
+                    </div>
+                    <h4>积分使用说明</h4>
+                    <div class="tips">
+                        您有<i ng-bind="pointInfo.totalPoint"></i>积分，50积分=1元，支付完成前积分将被临时冻结。
+                    </div>
+                </div>
+                <i class="iconfont icon-guanbi" ng-click="clickMask()"></i>
+            </div>
+            <!-- 点击返回提示 -->
+            <div class="payment-common-pop" ng-if="showCancelMask">
+                <div class="container">
+                    <div class="title">
+                        <i class="iconfont icon-bookingnotice"></i>
+                    </div>
+                    <h4>温馨提示</h4>
+                    <div class="tips">
+                        <p class="cen">尚未完成支付,返回将放弃支付。</p>
+                    </div>
+                    <div class="bottom border-top bottom_a">
+                        <a class="cancel-btn son-box border-right" ng-click="goBack(true)">返回</a>
+                        <a class="ok-btn son-box" ng-click="confirmPay()">继续支付</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 优惠变更提示 -->
+            <div class="payment-common-pop" ng-if="showExtraMoneyMask">
+                <div class="container">
+                    <div class="title">
+                        <i class="iconfont icon-bookingnotice"></i>
+                    </div>
+                    <h4>优惠变更提示</h4>
+                    <div class="tips">
+                        <p>如果您调整了支付方式，支付金额将比当前贵¥<i ng-bind="extraMoney"></i>元。确定要调整吗?</p>
+                    </div>
+                    <div class="bottom border-top bottom_a">
+                        <a class="cancel-btn son-box border-right" ng-click="cancelChange()">返回</a>
+                        <a class="ok-btn son-box" ng-click="confirmPay()">继续支付</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 支付失败 -->
+            <div class="payment-common-pop" ng-if="showError">
+                <div class="container">
+                    <div class="title">
+                        <i class="iconfont icon-cry"></i>
+                    </div>
+                    <h4>支付失败</h4>
+                    <div class="tips">
+                        <p class="gray cen">订单编号: <i ng-bind="paymentInfo.OrderDetail.OrderCode"></i></p>
+                        <a class="btn cen">更换支付方式</a>
+                        <a class="btn cen">联系客服</a>
+                    </div>
+                    <div class="bottom border-top layout-box">
+                        <a class="cancel-btn son-box" ng-click="clickMask()">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+        <!--<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/pay/paycommon.js?v=20170921183141"></script>-->
+        <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/booking/payment.js?v=20170921183141"></script> 
+        <script>
+            //去掉磨窗
+            api.__asyncLoadingCode__ = '0';
+        </script>
+</body>
+</html>

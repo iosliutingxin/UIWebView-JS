@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="calendarapp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <title>旅行团期说明_旅行日期_奇迹旅行-众信悠哉旅游网</title>
+    <meta name="keywords" content="旅行团期说明,旅行日期,奇迹旅行" />
+    <meta name="description" content="旅行团期说明,旅行日期选择,众信悠哉旅游网旅游奇迹,特别推荐,一起探寻奇迹之旅!" />
+    <link rel="Shortcut Icon" href="https://r.uzaicdn.com/favicon-sj.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/hybrid/styles/product/individualcalendar.css?v=20170725200805" />
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper.min.css?v=20170725200805">
+    <style type="text/css">
+        @charset "UTF-8";
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+    </style>
+</head>
+
+<body ng-controller="calendardetail" ng-cloak>
+    <div class="uzai-header" id="uzai-calendar-header">
+        <i class="iconfont icon-back" ng-click="backpage();"></i>
+        <b>选择日期</b>
+    </div>
+
+    <div class="uzai-container" id="uzai-calendar-container">
+        <!--日历部分-->
+        <div class="uzai-calender">
+            <div class="red-bg">
+
+                <div class="switch-btn">
+                    <b class="left"></b>
+                    <b class="right"></b>
+                    <div class="center zHide">
+                        <i class="circle"></i>
+                        <p>
+                            <span class="month"></span>
+                            <span class="year">
+                                <b>月</b><br />
+                                <b></b>
+                            </span>
+                        </p>
+                        <i class="circle"></i>
+                    </div>
+                </div>
+
+                <i class="triangles"></i>
+                <!--星期-->
+                <div class="calendar-week">
+                    <ul class="week-list"></ul>
+                </div>
+
+            </div>
+            <div class="container-center">
+                <div class="device">
+                    <a class="arrow-left" href="#"></a>
+                    <a class="arrow-right" href="#"></a>
+                    <div class="swiper-container container">
+                        <div class="swiper-wrapper box-center swiper" id="list">
+
+                        </div>
+                    </div>
+                    <div class="pagination"></div>
+                </div>
+                <!--库存-->
+                <!--<div class="stock zHide"><b class="m"></b>月<b class="d"></b>日出发仅剩<b class="nums">  </b>个余位</div>-->
+                <!--没有团期-->
+                <div class="no-tuan" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--footer-->
+    <div class="uzai-footer border-top" id="uzai-calendar-footer">
+        <ul>
+            <li class="date-xz">
+               <em class="date-text">请选择日期</em>
+            </li>
+            <li class="buy-no">
+                下一步
+            </li>
+            <li class="buy-now zHide" ng-click="next()">
+                下一步
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170725200805"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170725200805"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170725200805"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170725200805"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper-3.3.1.min.js?v=20170725200805"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/product/calendar.js?v=20170725200805"></script>
+</body>
+
+</html>

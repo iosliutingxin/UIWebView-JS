@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+<!-- 费用须知子页 -->
+
+
+<div class="individualcost">
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 费用须知
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content cost-page" find-cost>
+        <div class=" purchase">
+
+            <div class="buynoticecon ticket-on j_ticketshow">
+                <div class="icon booknotice j_tickettit">
+                    <i class="iconfont icon-costnotinclude"></i>
+                    <i>费用包含</i>
+                    <i class="iconfont icon-bottom fr"></i>
+                </div>
+                <div class="editorcon border-top" ng-bind-html="ProductInfo.Baohan | trustHtml">
+
+                </div>
+            </div>
+
+            <div class="buynoticecon j_ticketshow mt20">
+                <div class="icon contain j_tickettit">
+                    <i class="iconfont icon-costnotincludes"></i>
+                    <i>费用不含</i>
+                    <i class="iconfont icon-bottom fr"></i>
+                </div>
+                <div class="editorcon border-top " ng-bind-html="ProductInfo.NoBaohan | trustHtml">
+
+                </div>
+            </div>
+            
+            <div class="buynoticecon j_ticketshow mt20 ">
+                <div class="icon contain j_tickettit">
+                    <i class="iconfont icon-booking-notice "></i>
+                    <i>退改规定</i>
+                    <i class="iconfont  icon-bottom fr"></i>
+                </div>
+                <div class="editorcon border-top  " ng-bind-html="ProductInfo.WarmInfo | trustHtml">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

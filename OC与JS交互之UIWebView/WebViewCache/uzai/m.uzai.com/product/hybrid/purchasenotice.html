@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+<!-- 购买须知子页 -->
+
+
+<div class="buynoticepage">
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 购买须知
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content" id="j-purchase-wrapper">
+        <div class=" purchase" id="j-purchase-scroller" >
+
+            <div class="buynoticecon" ng-show="ProductInfo.Important!=''">
+                <div class="icon booknotice">
+                    <i class="iconfont icon-bookingnotice"></i>
+                    <i>预订须知</i>
+                    <i class="iconfont tubiao icon-top fr"></i>
+                </div>
+                <div class="editorcon border-top booknoticecon" ng-bind-html="ProductInfo.Important | trustHtml">
+                </div>
+            </div>
+
+            <div class="buynoticecon mt20" ng-show="ProductInfo.WarmInfo!=''" find-purchase1>
+                <div class="icon contain">
+                    <i class="iconfont icon-buyinfo"></i>
+                    <i>温馨提示</i>
+                    <i class="iconfont tubiao icon-top fr"></i>
+                </div>
+                <div class="editorcon border-top containcon disnone border-top" ng-bind-html="ProductInfo.WarmInfo | trustHtml">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html ng-app="individualdetail" lang='zh-cn'>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170725200805"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/product/individualdetail.css?v=20170725200805" rel="stylesheet">
+
+
+    <title>众信悠哉旅游网</title>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="detail-content" ng-controller="individualdetailcon" ng-cloak>
+        <div class="cal-mask hide"></div>
+        <!-- 浏览历史 开始 -->
+        <div class="history-view common-view">
+            <header class="white-topbar">
+                <div class="con">
+                    <a class="back fl"><i class="iconfont icon-back close-btn"></i></a>
+                    <div class="title">
+                        <h1>浏览历史</h1>
+                    </div>
+                </div>
+            </header>
+            <!-- 未登录 开始 -->
+            <div class="history-login" ng-show="needLogin">
+                <div class="top">
+                </div>
+                <p>
+                    查看浏览历史需要先登录哦
+                </p>
+                <a class="red-btn">去登录</a>
+            </div>
+            <!-- 未登录 结束 -->
+            <!-- 暂无数据 开始 -->
+            <div class="history-none" ng-show="!needLogin&& scanRecordsList.length<=0">
+                <div class="top">
+                </div>
+                <p>
+                    暂无数据
+                </p>
+            </div>
+            <!-- 暂无数据 结束 -->
+            <div id="historywrapper" class="redscorll" ng-show="!needLogin&& scanRecordsList.length>0">
+                <div class="content wrapper-scroll">
+                    <div class="part" ng-repeat="scanPro in scanRecordsList" ng-click="GoProductDetail(scanPro.ProductID,scanPro.UzaiTravelClassID,scanPro.ProductType)"
+                         find-history>
+                        <img class="h-img-lazy" data-src="{{scanPro.ProductPicURL}}">
+                        <div class="txt">
+                            <p class="tit">
+                                <span ng-if="scanPro.ProductType!=17&&scanPro.ProductType!=18&&scanPro.ProductType!=19&&scanPro.ProductType!=20&&scanPro.ProductType!=21&&scanPro.ProductType!=22&&scanPro.ProductType!=23"><i class="iconfont icon-address"></i>{{scanPro.CityName}}出发</span>
+                                <span ng-if="scanPro.ProductType==17||scanPro.ProductType==18||scanPro.ProductType==19||scanPro.ProductType==20||scanPro.ProductType==21||scanPro.ProductType==22||scanPro.ProductType==23"><i class="iconfont icon-address"></i>{{scanPro.ProductTypeName}}</span>
+                            </p>
+                            <p class="text">
+                                <a class="two-line" ng-bind-html="scanPro.ProductName|trustHtml">
+                                </a>
+                            </p>
+                            <p class="bot border-top">
+                                ¥<i ng-bind="scanPro.ProductPrice"></i><em>起</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 浏览历史 结束 -->
+        <!-- 返回 开始 -->
+        <a class="back-top hide iconfont icon-backtop"></a>
+        <!-- 返回 结束 -->
+        <div class="detail uzai-wrapper">
+            <!-- 头部 开始 -->
+            <header class="white-topbar none white-topbar1">
+                <!-- 滑动的时候北京变由透明变实 -->
+                <div class="con border-bot">
+                    <a class="back fl" ng-click="goBack()"><i class="iconfont icon-back"></i></a>
+                    <div class="fr">
+                        <a class="share " ng-show="isApp" ng-click="SharaProduct(ProductInfo.ProductName,ProductInfo.ProductName, productImgUrl,ProductURL)"><i class="iconfont icon-share"></i></a>
+                        <a class="more"><i class="iconfont icon-more"></i></a>
+                    </div>
+                    <div class="title">
+                        <h1 ng-bind-html="ProductInfo.ProductName | trustHtml"></h1>
+                    </div>
+                </div>
+                <div class="more-list hide">
+                    <ul>
+                        <li><a ng-click="GoMyOrder()"><i class="iconfont icon-order"></i>我的订单</a></li>
+                        <!--<li ng-if="isApp"><a ng-click="GoMyFavorites()"><i class="iconfont icon-collection"></i>我的收藏</a></li>-->
+                        <li class="ng-scope" ng-if="!isApp"><a class="history-show" ng-click="history_init()"><i class="iconfont icon-history"></i>浏览历史</a></li>
+                        <li ng-if="isApp"><a ng-click="history_init_app()"><i class="iconfont icon-history"></i>浏览历史</a></li>
+                        <li><a ng-click="GoIndex()"><i class="iconfont icon-home"></i>回到首页</a></li>
+                    </ul>
+                </div>
+            </header>
+            <!-- 头部 结束 -->
+            <div class="wrapper-scroll">
+                <nav class="head-bg swiper-container-headbg swiper-container-horizontal">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide" ng-repeat="ProductImg in ProductImgs " find-head-bg>
+                            <div ng-if="$index>0" class="swiper-lazy-preloader"></div>
+                            <img ng-if="$index==0" ng-src="{{ ProductImg.ImgUrl }}" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/head-bg-default.png?v=4fee1c78f7'">
+                            <img ng-if="$index>0" class="swiper-lazy" data-src="{{ ProductImg.ImgUrl }}" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/head-bg-default.png?v=4fee1c78f7'">
+
+                        </li>
+
+
+                    </ul>
+                </nav>
+                <!--main开始-->
+                <div class="main">
+                    <div class="scroll-head">
+                        <div class="red-com-box">
+                            <section class="com-box detail-type red-triangle">
+                                <div class="title">
+                                    <span>
+                                        <i class="iconfont icon-flag "></i> <em ng-if="ProductInfo.TagName!=''">{{ProductInfo.TagName}}-{{ProductInfo.ProductTypeName}}</em>
+                                        <em ng-if="ProductInfo.TagName==''" ng-bind="ProductInfo.ProductTypeName"></em>
+                                    </span>
+                                </div>
+                                <p class="con-text" ng-bind-html="ProductInfo.ProductName | trustHtml"></p>
+                                <div class="on-shelf ng-scope">
+                                    <div class="price-bot">
+                                        <p class="fl" ng-if="ProductInfo.IndividualSkuClassifyList.length>0&&ProductInfo.Enable==1">
+                                            <span class="price">¥ <i class="big" ng-bind="ProductInfo.MinPrice"></i><em>起</em></span>
+                                            <span class="gray-under"></span>
+                                            <span class="question-btn"><i class="iconfont icon-question"></i></span>
+                                        </p>
+                                        <p class="fr ng-scope" ng-if="ProductInfo.IndividualSkuClassifyList.length<=0||ProductInfo.Enable==0">此产品已下架</p>
+                                    </div>
+                                    <div class="com-hr"><i class="l"></i><i class="r"></i></div>
+
+                                    <div class="border-bot pub-tit">
+                                        <span class="tit"><i class="iconfont icon-collection iconfontone"></i><i class="verm">推荐理由</i></span>
+                                    </div>
+                                    <div class="recommend-con">
+                                        <div ng-bind-html="ProductInfo.TuiJian | trustHtml" class="three-line recommend-text"></div>
+                                        <div class="morecon" ng-click="recommendShow()"><i class="iconfont icon-bottom "></i></div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!--多个分类情况下的SKU列表 开始-->
+                            <section ng-class="$index == 0? 'com-box j_ticketshow ticket-on':'com-box j_ticketshow'" ng-if="ProductInfo.IndividualSkuClassifyList.length >1&&ProductInfo.Enable==1" ng-repeat="SkuClassify in ProductInfo.IndividualSkuClassifyList " find-ticket>
+                                <div class="biaoti j_tickettit">
+                                    <i class="iconfont icon-product iconfontone"></i><p class="txt-cut">{{SkuClassify.ClassifyName}}</p>
+                                    <i class="iconfont icon-bottom fr"></i>
+                                </div>
+                                <div class="ticket-con">
+                                    <div class="crpcon" ng-repeat="skuinfo in SkuClassify.IndividualSKUInfoList">
+                                        <p class="plr20">
+                                            {{skuinfo.SKUName}}
+                                        </p>
+                                        <div class="reserve-con">
+                                            <span class="fl">
+                                                <i class="iconfont icon-calendar"></i>
+                                                <em class="time-text" ng-if="skuinfo.ReserveDateWay==1">最早可订{{skuinfo.RecentlyTime}}</em>
+                                                <em class="time-text" ng-if="skuinfo.ReserveDateWay==2">请提前预定</em>
+                                            </span>
+                                            <span class="fr corff005c">
+                                                <em class="reserve-price ">¥{{skuinfo.MinPrice}}</em>
+                                                <a class="reserve-btn" ng-skuid="{{skuinfo.SKUID}}" ng-click="GoReserve(ProductInfo.ProductID,skuinfo.SKUID, skuinfo.ReserveDateWay)">预订</a>
+
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </section>
+                            <!--多个分类情况下的SKU列表 结束-->
+                            <!--当只存在一个分类情况下的SKU列表 开始-->
+                            <section class="pt20 com-box pb20" ng-if="ProductInfo.IndividualSkuClassifyList.length ==1&&ProductInfo.Enable==1">
+                                <div class="crpcon" ng-repeat="skuinfo in ProductInfo.IndividualSkuClassifyList[0].IndividualSKUInfoList ">
+                                    <p class="plr20" ng-bind="skuinfo.SKUName">
+
+                                    </p>
+                                    <div class="reserve-con">
+                                        <span class="fl">
+                                            <i class="iconfont icon-calendar"></i>
+                                            <em class="time-text" ng-if="skuinfo.ReserveDateWay==1">最早可订{{skuinfo.RecentlyTime}}</em>
+                                            <em class="time-text" ng-if="skuinfo.ReserveDateWay==2">请提前预定</em>
+                                        </span>
+                                        <span class="fr corff005c" 　>
+                                            <em class=" reserve-price ">
+                                                ¥{{skuinfo.MinPrice}}
+                                            </em>
+                                            <a class="reserve-btn" ng-skuid="{{skuinfo.SKUID}}" ng-click="GoReserve(ProductInfo.ProductID,skuinfo.SKUID, skuinfo.ReserveDateWay)">预订</a>
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </section>
+                            <!--当只存在一个分类情况下的SKU列表 结束-->
+                            <div class="list-con">
+                                <a class="com-box mt20" href="#/introduce"><i class="iconfont icon-jieshao iconfontone"></i>产品介绍<i class="iconfont icon-right fr"></i></a>
+                                <a class="com-box mt20" href="#/usenotice"><i class="iconfont icon-iconfonttishi iconfontone"></i>使用须知<i class="iconfont icon-right fr"></i></a>
+                                <a class="com-box mt20" href="#/costnotice"><i class="iconfont icon-fujiafeiyong iconfontone"></i>费用须知<i class="iconfont icon-right fr"></i></a>
+                            </div>
+
+                            <section class="com-box recommend-more" ng-if="ProductInfo.UzaiRecommendProductList.length>=3">
+                                <div class="pub-tit"><i class="iconfont icon-tuijian iconfontone"></i>相关推荐</div>
+                                <div class="recommend-m-con">
+                                    <ul class="recommend-m-ul">
+                                        <li ng-repeat="RecommendProduct in ProductInfo.UzaiRecommendProductList" ng-click="GoRecommendProductDetil(RecommendProduct.ProductID)" find-recommend>
+                                            <em>¥{{RecommendProduct.MinPrice}}</em>
+                                            <img class="img-lazy" data-src="{{RecommendProduct.ImgUrl}}" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/comment-default.jpg'">
+                                            <span class="two-line">
+                                                {{RecommendProduct.ProductName}}
+                                            </span>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <!--main结束-->
+            </div>
+            <footer>
+                <div class="border-top  layout-box">
+                    <!--<a class="collection" ng-show="IsAlreadytFavorites==0" ng-click="AddFavorites()" ><i class="iconfont icon-collection"></i><span>收藏</span></a>
+                    <a class="collection" ng-show="IsAlreadytFavorites==1" ng-click="CancelFavorites()"><i class="iconfont icon-collection on"></i><span>已收藏</span></a>-->
+                    <a class=" son-box" id="mPhone" href="tel:4009982060"><i class="iconfont icon-telphone"></i><span>电话咨询</span></a>
+                    <a class="phone son-box j-uzai-meiqia"><i class="iconfont icon-zixun"></i><span>在线咨询</span></a>
+                    <a class="reservation-btn disable  ng-hide">已下架</a>
+                </div>
+            </footer>
+        </div>
+        
+        <!-- 图片放大 开始 -->
+        <div class="img-view hide" >
+            <div class="content">
+                <div class="num">
+                    <span>&lt;<em><i class="number">1</i>/<i class="sumnumber"></i></em>&gt;</span>
+                </div>
+                <div class="box swiper-container-Showimg">
+                    <ul class="swiper-wrapper datucon"></ul>
+                </div>
+                <a class="close-btn"><i class="iconfont icon-close"></i></a>
+            </div>
+        </div>
+        <!-- 图片放大 结束 -->
+    </div>
+    <script src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170725200805"></script>
+    <script src=" ../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170725200805"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170725200805"></script>
+    <script src="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper-3.3.1.min.js?v=20170725200805"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/product/individualdetail.js?v=20170725200805"></script>
+
+</body>
+
+</html>

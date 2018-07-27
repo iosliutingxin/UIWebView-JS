@@ -1,0 +1,115 @@
+<meta charset="UTF-8" />
+    <div class="edit-bg couponsBg hahah" choose-mark>
+        <div class="coupons-header border-bot">
+            <a ng-click="PageBack('#/')"><i class="iconfont icon-back"></i></a>
+            <b>选择优惠券</b>
+            <em class="mark">?</em>
+        </div>
+
+        <div id="coupons-wrapper">
+            <!--输入优惠码-->
+            <div class="coupons">
+                <div class="coupons-search" select-coupons-input>
+                    <div class="search">
+                        <i class="iconfont icon-edit-on into"></i>
+                        <input type="text" placeholder="输入券码" />
+                        <i class="close zHide iconfont icon-close"></i>
+                    </div>
+                    <div class="button" ng-click="addcoupons($event)">
+                        添加优惠券
+                    </div>
+                </div>
+
+                <div class="yours-coupons" ng-if="useableCards.length>0 || disableCards.length>0">
+                    <!--适用-->
+                    <div class="coupons-yes" ng-if="useableCards.length>0">
+                        <span class="yes-title">
+                            <i></i><b>可用</b><i></i>
+                        </span>
+                    </div>
+                    <div class="choose-coupons" ng-repeat="con in useableCards" selectcouponskeyong>
+                        <div class="left">
+                            <b ng-if="con.TicketType==2">{{con.UPrice*0.1 | number:1}}折</b><b ng-if="con.TicketType==1">￥{{con.UPrice}}</b>
+                            <input type="hidden" value="{{con.UActiveCode}}" />
+                            <input type="hidden" id="" value="{{con.UPrice}}" class="cou_price" />
+                        </div>
+                        <div class="right">
+                            <h4>{{con.ProjectName}}</h4>
+                            <p>有效期：<b>{{con.CodeStartDate|date:'yyyy/MM/dd'}}</b>-<b>{{con.CodeEndDate|date:'yyyy/MM/dd'}}</b></p>
+                            <em class="yId">{{con.UActiveCode}}</em>
+                            <span>使用说明<i class="iconfont icon-bottom"></i></span>
+                            <b class="circle" id="{{con.UActiveCode}}" ty="{{con.TicketType}}"><i class="iconfont icon-right-9 zHide"></i></b>
+                            <input class="couponsMaxPrice" value="{{con.DeductionAmount}}" type="hidden" />
+                        </div>
+                        <div class="explain zHide">
+                            <p class="condition">
+                                <b>条件:</b>
+                                <span ng-bind="con.Condition"></span>
+                            </p>
+                            <p class="range">
+                                <b>范围:</b>
+                                <span ng-bind="con.Region"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <!--不适用-->
+                    <div class="coupons-no" ng-if="disableCards.length>0">
+                        <span class="yes-title">
+                            <i></i><b>不可用</b><i></i>
+                        </span>
+                    </div>
+                    <div class="no-coupons" ng-repeat="con in disableCards" selectcouponsbukeyong>
+                        <div class="left">
+                            <b ng-if="con.TicketType==2">{{con.UPrice*0.1 | number:1}}折</b><b ng-if="con.TicketType==1">￥{{con.UPrice}}</b>
+                        </div>
+                        <div class="right">
+                            <h4>{{con.ProjectName}}</h4>
+                            <p>有效期：<b>{{con.CodeStartDate|date:'yyyy/MM/dd'}}</b>-<b>{{con.CodeEndDate|date:'yyyy/MM/dd'}}</b></p>
+                            <em class="yId">{{con.UActiveCode}}</em>
+                            <span>使用说明<i class="iconfont icon-bottom"></i></span>
+                            <b class="circle zHide"><i class="iconfont icon-right-9 zHide"></i></b>
+                        </div>
+                        <div class="explain zHide">
+                            <p class="condition">
+                                <b>条件:</b>
+                                <span ng-bind="con.Condition"></span>
+                            </p>
+                            <p class="range">
+                                <b>范围:</b>
+                                <span ng-bind="con.Region"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--没有优惠券-->
+                <div class="no-coupons-now" ng-if="!(useableCards && disableCards)">
+                    <div class="bg"></div>
+                    <p>暂无优惠券，可使用优惠码添加</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--遮罩层-->
+    <div class="cal-mask1 zHide" style="display:none"></div>
+    <!--弹窗内容-->
+    <div id="cal-pop" class="zHide" style="display:none">
+        <div class="pop-container">
+            <div class="title">
+                <i class="iconfont icon-discount"></i>
+            </div>
+            <h4>优惠券使用说明</h4>
+            <div class="tips">
+                <p>1.抵用券只针对正价产品可以使用。</p>
+                <p>2.若使用的抵用券金额大于产品可抵用的最大金额则不能使用。</p>
+                <p>3.折扣券只针对线路价格进行打折，优惠保险等。</p>
+            </div>
+        </div>
+        <i class="iconfont icon-guanbi" ng-click="closeCard()"></i>
+
+    </div>
+    <script>
+        //页面初始化方法
+        //Booking_subPage.create().historyClick();
+    </script>

@@ -1,0 +1,102 @@
+
+<meta charset="UTF-8"/>
+<div class="edit-bg" >
+    <div class="edit-header border-bot">
+        <a href="#/travepeople" ng-click="hideTips()" class="hideTips">
+            <i class="iconfont icon-back"></i>
+        </a>
+        <b id="title">编辑出游人信息</b> 
+        <em ng-click="insertPeople()">保存</em>
+    </div>
+    <div id="edit-wrapper" class="wrapper2" edit-people>
+        <div>
+            <p class="edit-title">基本信息</p>
+            <div class="edit-people basic-information">
+                <!--<form action="">-->
+                <ul>
+                    <li class="border-bot">
+                        <b>姓<em class="twozi">名</em><i class="iconfont icon-yuanshixin"></i></b>
+
+                        <input type="text" placeholder="与证件姓名一致" class="name defaultP" maxlength="20" ng-blur="destory1()" value="" />
+                        <em class="name-tips zHide myTips">请输入正确的姓名</em>
+                    </li>
+                    <li class="border-bot edit-sex">
+                        <b>性<em class="twozi">别</em><i class="iconfont icon-yuanshixin"></i></b>
+                        <i class="sex nan">男</i>
+                        <i class="sex nv">女</i>
+                    </li>
+                    <li class="border-bot">
+                        <b>出生日期<i class="iconfont icon-yuanshixin"></i></b>
+                        <span class="hideElement" edit-date>
+                            <input type="date" placeholder="出游人出生日期" value="" class="date defaultP" />
+                        </span>
+                        <i class="iconfont icon-right"></i>
+                    </li>
+                    <li class="border-bot">
+                        <b>手<em class="threezi">机</em>号</b>
+                        <input type="number" placeholder="出游人手机号" onblur="ValidateNumber(this,11)" onkeyup="ValidateNumber(this,11)" onkeypress="ValidateNumber(this,11)" class="phone defaultP ng-valid ng-dirty ng-valid-number ng-touched" />
+                        <em class="phone-tips zHide myTips">请输入正确的手机号</em>
+                    </li>
+                    <li class="">
+                        <b>国<em class="twozi">籍</em></b>
+                        <input type="text" value="中国大陆" class="nationality defaultP" maxlength="10" onblur="validate(this,4)" onkeypress="validate(this,4)" onkeydown="validate(this,4)" onkeyup="validate(this,4)" />
+                        <em class="nation paper-tips zHide myTips">国籍只能是中英文</em>
+                    </li>
+                </ul>
+                <!--</form>-->
+            </div>
+
+            <p class="information-title">
+                <b>证件信息</b>
+                <!--<a id="div1" class="close1">
+                    <span id="div2" class="close2"></span>
+                </a>-->
+            </p>
+            <div class="edit-people document-information editpeople-document-information">
+                <ul>
+                    <li class="border-bot">
+                        <b>证件类型</b>
+                        <input type="hidden" id="paperKeyId" value="0" />
+                        <select id="passportofpaper" ng-model="editpeopleselect" ng-change="typeChange(editpeopleselect);" ng-options="x.Val as x.Name for x in papers" class="passport"></select>
+                        <i class="iconfont icon-right"></i>
+                    </li>
+                    <li class="border-bot" id="paperinfo">
+                        <b>证<em class="threezi">件</em>号</b>
+                        <input type="text" placeholder="出游人证件号" class="numberId defaultP" maxlength="50" />
+                        <em class="paperid paper-tips zHide myTips">请填写正确的证件号</em>
+                    </li>
+                    <li class="border-bot" id="paperplaceinfo">
+                        <b>签发地点</b>
+                        <input type="text" placeholder="证件签发城市" class="city defaultP"/>
+                        <em class="paperaddr paper-tips zHide myTips">签发地点只能是中英文</em>
+                    </li>
+                    <li class="" id="paperdateinfo">
+                        <b>有<em class="threezi">效</em>期</b>
+                        <span class="hideElement hideElement2">
+                            <input type="date" placeholder="证件到期时间" class="lineTime defaultP"/>
+                            <em>证件到期时间</em>
+                        </span>
+                        <i class="iconfont icon-right"></i>
+                    </li>
+                </ul>
+                <input type="hidden" id="paperid" value="">
+            </div>
+            <div class="justBg editpeople-justBg "></div>
+        </div>
+      
+    </div>
+ 
+
+</div>
+
+
+
+
+<script defer>
+    //页面初始化方法
+    editinit();
+</script>
+
+
+
+

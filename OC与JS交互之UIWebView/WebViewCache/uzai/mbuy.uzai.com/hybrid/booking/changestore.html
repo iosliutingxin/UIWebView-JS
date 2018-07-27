@@ -1,0 +1,60 @@
+<meta charset="UTF-8"/>
+
+<div class="edit-bg storeBg">
+    <div class="select-store">
+        <div class="bank-header border-bot">
+            <a onclick="api.routerGoBack()">
+            <i class="iconfont icon-back"></i>
+            </a>
+            <b>选择门店</b>
+        </div>
+        <ul class="store">
+            <li class="border-right">
+                <select ng-change="LoadArea(1)" ng-options="city.UzaiCity as city.CityName for city in Citys" ng-model="selected">
+                    <!--<option ng-repeat="city in Citys" value="{{city.UzaiCity}}">{{city.CityName}}</option>-->
+                </select>
+                <i class="triangle"></i>
+            </li>
+            <li>
+                <select ng-change="LoadStore()" ng-options="area.AreaName as area.AreaName for area in Areas" ng-model="areaSelected">
+                    <!--<option ng-repeat="area in Areas">{{area.AreaName}}</option>-->
+                </select>
+                <i class="triangle"></i>
+            </li>
+        </ul>
+    </div>
+
+    <div id="store-wrapper" class="wrapper2" change-store>
+        <!--门店-->
+        <div class="uzai-store">
+            <ul class="stores">
+
+                <li ng-repeat="store in Stores" ng-Class="{'active':StoreId==store.StoreId}" id="s_{{store.StoreId}}" ng-click="ChooseStore(store)" changestore>
+
+                    <i class="iconfont icon-live-address dizhi"></i>
+                    <div>
+                        <h4 id="c-StoreName">{{store.StoreName}}</h4>
+                        <p id="c-Address">地址：{{store.Address}}</p>
+                        <p>电话：{{store.Tel}}</p>
+                        <p>营业时间：{{store.BusinessHour}}</p>
+                        <input type="hidden" id="MapUrl" value="{{store.MapPic}}"/>
+                        <input type="hidden" id="StoreId" value="{{store.StoreId}}"/>
+                    </div>
+                    <i class="triangle zHide"></i>
+                    <i class="iconfont icon-right-9 duihao"></i>
+                </li>
+                <!--<li>-->
+                    <!--<i class="iconfont icon-live-address dizhi"></i>-->
+                    <!--<div>-->
+                        <!--<h4>众信旅游(宣武门店)</h4>-->
+                        <!--<p>地址：北京市西城区前门西大街141号</p>-->
+                        <!--<p>电话：010-59203838</p>-->
+                        <!--<p>营业时间：09:00-18:00</p>-->
+                    <!--</div>-->
+                    <!--<i class="triangle zHide"></i>-->
+                    <!--<i class="iconfont icon-right-9 duihao"></i>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</div> 

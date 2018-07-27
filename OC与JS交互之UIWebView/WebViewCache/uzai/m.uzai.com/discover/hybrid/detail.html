@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170911112852"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/base.css?v=20170911112852" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/detail.css?v=20170911112852" rel="stylesheet">
+    <title></title>
+</head>
+
+<body ng-cloak class="ng-cloak">
+
+    <!--  滚动开始 -->
+    <div id="wrapper" class="inside" ng-controller="topDetail">
+        <div id="scroller">
+            <!-- 图片区域开始 -->
+            <div class="picAre">
+                <div class=" icon">
+                    <a class="back " ng-show="backshow" ng-click="callback('https://m.uzai.com/discover/index.html',true,false)"><i class="icon-ai"></i></a>
+                    <a class="share" ng-show="isShow" ng-click="shareSubject(subjectname,subjectdesc,coverImg,pageUrl)">
+                        <i class=" icon-ai"></i>
+                    </a>
+                    <a class="collection " ng-show="isShow" ng-click="addSubjectToFavorite()">
+                        <i class=" icon-ai"></i>
+                    </a>
+                </div>
+                <img ng-src="{{coverImg}}" class=" picimg">
+                <div class="dates line-ctrl-{{ hover }}">
+                    <div class="single" ng-show="coverImg">
+                        <div class="spread">
+                        </div>
+                        <span class="em"></span>
+                    </div>
+
+
+                    <div ng-if="pricerangeShow" ng-class={'line-top':hover2}></div>
+                    <a ng-if="pricerangeShow" ng-class={'line-top-span':hover2} ng-bind="pricerange" ng-click="openSearch(pricerangeid,'',subjectarea)">
+                    </a>
+
+
+
+                    <div ng-if="daysShow" ng-class={'line-top':hover2,'line-middle':hover3}></div>
+                    <a ng-if=" daysShow" ng-class={'line-top-span':hover2,'line-middle-span':hover3} ng-bind="days" ng-click="openSearch('',daysid,subjectarea)"></a>
+
+
+
+                    <div ng-class={'line-middle':hover1,'line-bottom':hover2}></div>
+                    <a ng-class={'line-middle-span':hover1,'line-bottom-span':hover2} ng-bind="subjectarea" ng-click="openSearch('','',subjectarea)"></a>
+
+
+                </div>
+            </div>
+            <!-- 图片区域结束 -->
+            <!-- 第二块区域开始 -->
+            <div class="secondAre" ng-show="isshow">
+                <p class="stylep font34 cor444" ng-bind="subjectname"></p>
+                <div class="stylediv">
+                    <span ng-repeat='value in labellist' ng-bind="value" class="ml30"></span>
+
+                    <!--<span class="ml30">情怀</span>
+                    <span class="ml30">大自然</span>-->
+                </div>
+                <p class="des" ng-bind="subjectdesc">
+                </p>
+            </div>
+            <!-- 第二块区域结束 -->
+            <!-- 第三块区域开始 -->
+            <div class="thirdAre" ng-show="isProductsAny">
+                <div class="xgtj">
+                    <span class="redborder verM"></span>
+                    <span class="font28 cor666 verM" style="margin-left:0.2rem;">相关推荐</span>
+                </div>
+            </div>
+            <ul class="thirdul">
+                <li class="thirdlist " ng-repeat='product in products'>
+                    <a class="inside-block clearfix" ng-click="openProductDetail(product.Id,product.UzaiTravelClassID,product.ProductType)">
+                        <img data-url="{{product.ProductImageUrl}}" src="" class="listone fl" />
+                        <div class="fl subjectout">
+                            <p class="subject" ng-bind-html="product.ProductName | trustHtml"></p>
+                            <p class="price" ng-bind="'&#xFFE5;' + product.MinPrice + '起'"></p>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- 第三块区域结束 -->
+            <!-- the end 开始 -->
+            <div class="end" ng-show="isProductsAny"></div>
+            <!-- the end 结束 -->
+        </div>
+    </div>
+    <!-- 滚动结束 -->
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/discover/detail.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/plugin/iscroll/iscroll.js?v=20170911112852"></script>
+    <script type="text/javascript">
+(function() {
+    window.BMap_loadScriptTime = (new Date).getTime();
+
+})();
+
+    </script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api-map.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/pagestatistics.js?v=20170911112852" async></script>
+</body>
+
+</html>

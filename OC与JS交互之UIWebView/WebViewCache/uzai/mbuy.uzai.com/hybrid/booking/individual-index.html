@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html style="font-size:50px" ng-app="individualbooking">
+
+<head lang="zh-cn">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170922103322"></script>
+    <title>预订-众信悠哉旅游网</title>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/individual-index.css?v=20170922103322" rel="stylesheet">
+</head>
+<style type="text/css">
+    @charset "UTF-8";
+
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }
+</style>
+
+
+
+<body ng-controller="individualbookContent" ng-cloak>
+    <div id="uzai-wrapper" class="uzai-wrapper">
+        <!-- 头部 开始 -->
+        <header class="white-topbar">
+            <div class="con">
+                <a class="back fl j_back_btn"><i class="iconfont icon-back"></i></a>
+
+                <div class="fr ng-cloak">
+                    <a class="more" ng-href="tel:{{Telphone}}"><i class="iconfont icon-telphone"></i></a>
+                </div>
+                <div class="title">
+                    <h1>1/2填写订单</h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- 头部 结束 -->
+        <div id="wrapper">
+            <div class="icon-main-top">
+                <i></i>
+            </div>
+            <div class="icon-main-top-0">
+                <div class="iconfont icon-detail-info"></div>
+                <i></i>
+            </div>
+            <div class="main1 ng-cloak">
+                <div class="main1-top-0"></div>
+                <div class="main1-top-1">
+                    <h2 ng-bind="ProductName"></h2>
+                    <div class="trip ng-cloak">
+                        <span>[{{SkuCategoryName}}]{{SkuName| limitTo : 40 }}</span>
+                    </div>
+                </div>
+                <div class="main1-top-2">
+                    <span class="j_calendar" ng-show="goDate!=''&&goDate!=undefined&&SKU.ReserveDateWay === 1"><i class="iconfont icon-calendar"></i>{{goDate|date:"yyyy/MM/dd"}}</span>
+                    <span class="red ng-cloak"><i class="iconfont icon-money"></i>¥{{ProductPrice}}</span>
+                </div>
+            </div>
+
+
+            <!-- 数量 -->
+            <div class="main2">
+                <div class="main2_top main4_m">
+                    <div class="main2_top_left"><i class="iconfont icon-shuju"></i>数量</div>
+                    <div class="main2_top_right main4_m1">
+                        <div class="main4_m1_right">
+                            <div class="j_remove" ng-click="AdditionRemove()">
+                                <div class="main4_m1_right1 sure"><i class="iconfont icon-jianhao"></i></div>
+                            </div>
+                            <div class="num">
+                                <div class="main4_m1_right2 hover buy_number_val" ng-bind="BuyCount"></div>
+                            </div>
+                            <div class="j_add" ng-click="AdditionAdd()">
+                                <div class="main4_m1_right3 sure"><i class="iconfont icon-jiahao"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 联系人 -->
+            <div class="main2">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-mail-people"></i>联系人</div>
+                    <div class="main2_top_right" ng-show="isshowcontract" id="contactBook" ng-click="ContactBook('contact')"><span class=""><i class="iconfont icon-mail-list"></i></span>通讯录<i class="iconfont fr icon-right"></i></div>
+                </div>
+                <div class="main2_m">
+                    <div class="main2_m1">
+                        <div class="main2_m_left">姓&nbsp;&nbsp;&nbsp; 名<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="text" placeholder="填写联系人姓名" maxlength="20" ng-model="contactName" onblur="validate(this,1);"
+                                   onkeydown="validate(this,1)" onkeypress="validate(this,1)" id="contactName">
+                        </div>
+                    </div>
+                    <div class="main2_m1">
+                        <div class="main2_m_left">手机号<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="tel" placeholder="填写联系人手机号" onblur="validate(this,2)" onkeyup="validate(this,2)"
+                                   onkeypress="validate(this,2)" ng-model="contactPhone" id="contactPhone" >
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.ContactsInfo|iscontains:'4'">
+                        <div class="main2_m_left">微信号<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="text" placeholder="用于境外联系" onblur="validate(this,5)" onkeyup="validate(this,5)"
+                                   onkeypress="validate(this,5)" ng-model="ContactWechat" id="ContactWechat" >
+                        </div>
+                    </div>
+                    <div class="main2_m1">
+                        <div class="main2_m_left">邮&nbsp;&nbsp;&nbsp; 箱<span>•</span></div>
+                        <div class="main2_m_right check-email">
+                            <input type="text" class="v_input_text j_email" placeholder="@qq.com" id="email" ng-model="email" value=""
+                                   data-prompt="v_input_text" >
+                            <input type="text" class="js-prompt-input v_input_text " id="emailprompt" readonly="true" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 出游人 -->
+            <div class="main2" ng-show="TotalPerson>0">
+                <a href="#/individualtravepeople" ng-click="trave_people_init();">
+                    <div class="main2_top">
+                        <div class="main2_top_left"><i class="iconfont icon-peoples"></i>出游人</div>
+                        <div class="main2_top_right ng-cloak">
+                            <b id="xuanzechuyourenflag">请选择{{TotalPerson}}位出游人</b>
+                            <i class="iconfont fr icon-right"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="main4_m paddb20">
+                    <div class="overhidd" id="choseTravelList">
+                        <!--<div class="travel_list">
+                            <span class="name">出游人</span><span class="passport">护照号：999999</span>
+                        </div>-->
+                    </div>
+                    <!--<div class="main4_m1_more" id="travemore" data-height='3'><i class="iconfont icon-bottom"></i></div>-->
+                </div>
+            </div>
+
+            <!-- 备注 -->
+            <div class="main2">
+                <div class="main2_top border-bot">
+                    <div class="main2_top_left"><i class="iconfont icon-leaving-msg"></i>备注</div>
+                </div>
+                <div class="main5_m">
+                    <i class="iconfont icon-edit-on"></i>
+                    <textarea placeholder="特殊条件请备注" contenteditable="true" id="remark" maxlength="150"></textarea>
+                </div>
+            </div>
+
+            <!-- 服务地点 -->
+            <div class="main2 ng-cloak" id="locationdiv" ng-show="(TakePlace!=null&&TakePlace.length>0)||(AlsoAPlace!=null&&AlsoAPlace.length>0)||(OtherServicePlace!=null&&OtherServicePlace.length>0)">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-dizhi"></i>服务地点</div>
+                </div>
+                <div class="main2_m main2_gary" ng-show="TakePlace!=null&&TakePlace.length>0">
+                    <div class="main2_m1 right-bg j_select_address">
+                        <div class="main2_m_left">取件地点<span>•</span></div>
+                        <div class="main2_m_right main2_m_right_small">
+                            <span class="plder-text">请选择取件地点</span>
+                            <p class="select-value" id="TakePlace" data-locationid="{{location1id}}" data-locationcity="{{location1city}}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="main2_m main2_gary" ng-show="AlsoAPlace!=null&&AlsoAPlace.length>0">
+                    <div class="main2_m1 right-bg j_select_address">
+                        <div class="main2_m_left">还件地点<span>•</span></div>
+                        <div class="main2_m_right  main2_m_right_small">
+                            <span class="plder-text">请选择还件地点</span>
+                            <p class="select-value" id="AlsoAPlace" data-locationid="{{location2id}}" data-locationcity="{{location2city}}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="main2_m main2_gary" ng-show="OtherServicePlace!=null&&OtherServicePlace.length>0">
+                    <div class="main2_m1 right-bg j_select_address">
+                        <div class="main2_m_left">服务地点<span>•</span></div>
+                        <div class="main2_m_right main2_m_right_small">
+                            <span class="plder-text">请选择服务地点</span>
+                            <p class="select-value" id="OtherServicePlace" data-locationid="{{location3id}}" data-locationcity="{{location3city}}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快递信息 -->
+            <div class="main2 ng-cloak" ng-show="SKU.SelectFillNO=='express'">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-kuaidi"></i>快递信息</div>
+                    <div class="main2_top_right" ng-show="isshowcontract" ng-click="ContactBook('express')"><span class=""><i class="iconfont icon-mail-list"></i></span>通讯录<i class="iconfont fr icon-right"></i></div>
+                </div>
+                <div class="main2_m">
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'e1'">
+                        <div class="main2_m_left">收件人<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="text" placeholder="填写收件人姓名" id="ExpressManName" >
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'e2'">
+                        <div class="main2_m_left">手机号<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="tel" placeholder="请填写收件人手机号" id="ExpressMobile">
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'e3'">
+                        <div class="main2_m_left">邮&nbsp;&nbsp;&nbsp; 编<span>•</span></div>
+                        <div class="main2_m_right border-bot">
+                            <input type="text" placeholder="请填写邮编" id="ExpressPostcode" >
+                        </div>
+                    </div>
+                    <div class="main2_m1 right-bg" ng-show="SKU.SelectFillContent|iscontains:'e4'">
+                        <div class="main2_m_left">地&nbsp;&nbsp;&nbsp; 区<span>•</span></div>
+                        <div class="main2_m_right border-bot j_address_info address-select">
+                            <p class="plder-text">请选择收件地区</p>
+                            <p class="select-value"></p>
+                            <input type="hidden" id="ExpressProvince" />
+                            <input type="hidden" id="ExpressCity" />
+                            <input type="hidden" id="ExpressArea" />
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'e5'">
+                        <div class="main2_m_left">地&nbsp;&nbsp;&nbsp; 址<span>•</span></div>
+                        <div class="main2_m_right">
+                            <textarea placeholder="请填写收件地址" id="ExpressAddress"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 接送信息 -->
+            <div class="main2 ng-cloak" ng-show="SKU.SelectFillNO=='shuttle'">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-jiesong"></i>接送信息</div>
+                </div>
+                <div class="main2_m">
+                    <div ng-show="!isAndroid">
+                    <div class="main2_m1 right-bg" ng-show="SKU.SelectFillContent|iscontains:'s1'">
+                        <div class="main2_m_left">使用时间<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small select-check-box">
+                            <span>请选择使用时间</span>
+                                <input type="time" class="sel-form sel-time" id="ShuttleUseTime">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--安卓5.0开始-->
+                    <div ng-show="isAndroid">
+                        <div class="main2_m1">
+                            <div class="main2_m_left">使用日期<span>•</span></div>
+                            <div class="main2_m_right border-bot main2_m_right_small time-span">
+                                <span class="on" id="AndroidShuttleUseTime">{{goDate|date:"yyyy/MM/dd"}}</span>
+                            </div>
+                        </div>
+                        <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'s1'">
+                            <div class="main2_m_left">使用时间<span>•</span></div>
+                            <div class="main2_m_right border-bot main2_m_right_small time-select">
+
+                                <div class="select-check-box">
+                                    <span>请选择</span>
+                                    <select class="sel-form" id="useHour">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                    </select><em>时</em>
+                                </div>
+                                <div class="select-check-box">
+                                    <span>请选择</span>
+                                    <select class="sel-form" id="useMinute">
+                                        <option>0</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>30</option>
+                                        <option>40</option>
+                                        <option>50</option>
+                                    </select><em>分</em>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--安卓5.0结束-->
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'s2'">
+                        <div class="main2_m_left">航<i class="nbsp2"></i>班<i class="nbsp2"></i>号<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small">
+                            <input type="text" placeholder="请填写航班号" id="ShuttleFlightNo" >
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'s3'">
+                        <div class="main2_m_left">抵达机场<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small">
+                            <input type="text" placeholder="请填写抵达机场" id="ShuttleAirportName" >
+                        </div>
+                    </div>
+                    <div class="main2_m1 right-bg" ng-show="SKU.SelectFillContent|iscontains:'s6'">
+                        <div class="main2_m_left">出行人数<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small select-check-box">
+                            <span >请选择出行人数</span>
+                            <select class="sel-form" id="ShuttleTravelerCount">
+                                <option>请选择出行人数</option>
+                            
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="main2_m1 right-bg" ng-show="SKU.SelectFillContent|iscontains:'s7'">
+                        <div class="main2_m_left">儿童人数<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small select-check-box">
+                            <span>请选择出行儿童人数</span>
+                            <select class="sel-form" id="ShuttleChildCount">
+                                <option>请选择儿童人数</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="main2_m1 right-bg" ng-show="SKU.SelectFillContent|iscontains:'s8'">
+                        <div class="main2_m_left">行李件数<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small select-check-box">
+                            <span >请选择行李件数</span>
+                            <select class="sel-form" id="ShuttlePackageCount">
+                                <option>请选择行李件数</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2" >2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'s4'">
+                        <div class="main2_m_left">酒店名称<span>•</span></div>
+                        <div class="main2_m_right border-bot main2_m_right_small">
+                            <input type="text" placeholder="请填写酒店名称" id="ShuttleHotelName" >
+                        </div>
+                    </div>
+                    <div class="main2_m1" ng-show="SKU.SelectFillContent|iscontains:'s5'">
+                        <div class="main2_m_left">酒店地址<span>•</span></div>
+                        <div class="main2_m_right main2_m_right_small">
+                            <input type="text" placeholder="请填写酒店地址" id="SHuttleHotelAddress" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他信息 -->
+            <div class="main2" ng-show="SKU.SelectFillNO=='else'">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-qita"></i>其他信息</div>
+                </div>
+                <div class="main2_m" ng-show="SKU.SelectFillContent|iscontains:'el1'">
+                    <div class="main2_m1">
+                        <div class="main2_m_left">航<i class="nbsp2"></i>班<i class="nbsp2"></i>号<span>•</span></div>
+                        <div class="main2_m_right main2_m_right_small">
+                            <input type="text" placeholder="请填写航班号" id="ElseFlightNo" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 底部 开始 -->
+        <footer>
+            <div class="foot">
+                <span class="total">总价</span><span class="num ng-cloak" id="totalPrice">￥{{ProductPrice*BuyCount}}</span>
+                <span class="detailed j_detailed">明细<i class="iconfont icon-top"></i></span>
+                <a class="reservation-btn" ng-click="submitForm()" ondblclick="return false;">提交订单</a>
+            </div>
+        </footer>
+        <!-- 底部 结束 -->
+        <!-- 明细 开始 -->
+        <div class="foot_detailed">
+            <div class="foot_detailed_top border-bot">
+                <i class="iconfont left icon-money"></i>
+                <span>费用明细</span>
+                <i class="iconfont right icon-guanbi"></i>
+            </div>
+            <div class="foot_detailed_m" id="foot_detailed_m">
+                <div class="foot_detailed_li">
+                    <div class="foot_detailed_liname">
+                        <span class="ico">•</span><span class="pro">产品费用</span>
+                    </div>
+                    <div class="foot_detailed_lipro ng-cloak">
+                        <div class="left two-line">[{{SkuCategoryName}}] {{SkuName}}</div>
+                        <span class="right">￥{{ProductPrice}}*{{BuyCount}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 明细 开始 -->
+        <div class="bg_000"></div>
+        <div class="popup">
+            <span>订单创建成功！</span>
+        </div>
+        <!--遮罩层-->
+        <div class="cal-mask hide"></div>
+        <!--弹窗内容-->
+        <!-- 放弃填写提示弹窗 start -->
+        <div class="payment-common-pop payment-back-pop hide">
+            <div class="container">
+                <div class="title"><i class="iconfont icon-bookingnotice"></i></div>
+                <h4>温馨提示</h4>
+                <div class="tips">
+                    <p class="cen">订单尚未创建，返回将放弃填写。</p>
+                </div>
+                <div class="bottom border-top bottom_a">
+                    <a class="cancel-btn son-box border-right">返回</a>
+                    <a class="ok-btn son-box cancel-btn active">继续填写</a>
+                </div>
+            </div>
+        </div>
+        <!-- 放弃填写提示弹窗 end -->
+        <!-- 没有产品 提示弹窗 start -->
+        <div class="payment-common-pop payment-noproduct-pop hide">
+            <div class="container">
+                <div class="title"><i class="iconfont icon-bookingnotice"></i></div>
+                <h4>温馨提示</h4>
+                <div class="tips">
+                    <p class="cen">非常抱歉，该产品已被抢购一空<br>请选购其他产品或拨打客服电话咨询</p>
+                </div>
+                <div class="bottom border-top bottom_a layout-box">
+                    <a class="cancel-btn son-box">返回</a>
+                </div>
+            </div>
+        </div>
+        <!-- 没有产品 提示弹窗 end -->
+        <!-- 选择地址 start -->
+
+        <div class="address-pop ng-cloak" ng-show="TakePlace!=null">
+            <div class="foot_detailed_top border-bot">
+                <span>选择地址</span>
+                <i class="iconfont right icon-guanbi"></i>
+            </div>
+            <div class="address-con">
+                <div class="left">
+                    <span ng-class="{'on':$index==0}" ng-repeat="item in TakePlaceNameList">{{item}}</span>
+                </div>
+                <div class="right">
+                    <div ng-repeat="item in TakePlace" ng-class="TakePlaceNameList[0]===item.CityName?'address-ls':'address-ls hide '" data-city="{{item.CityName}}" select-address>
+                        <p class=" border-bot" ng-bind="item.LocationName" data-locationid="{{item.LocationID}}" data-cityname="{{item.CityName}}">
+                        </></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="address-pop ng-cloak" ng-show="AlsoAPlace!=null">
+            <div class="foot_detailed_top border-bot">
+                <span>选择地址</span>
+                <i class="iconfont right icon-guanbi"></i>
+            </div>
+            <div class="address-con">
+                <div class="left">
+                    <span ng-class="{'on':$index==0}" ng-repeat="item in AlsoAPlaceList">{{item}}</span>
+                </div>
+                <div class="right">
+                    <div ng-repeat="item in AlsoAPlace" ng-class="AlsoAPlaceList[0]===item.CityName?'address-ls':'address-ls hide'" data-city="{{item.CityName}}" select-address>
+                        <p class="border-bot" ng-bind="item.LocationName" data-locationid="{{item.LocationID}}" data-cityname="{{item.CityName}}"></></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="address-pop ng-cloak" ng-show="OtherServicePlace!=null">
+            <div class="foot_detailed_top border-bot">
+                <span>选择地址</span>
+                <i class="iconfont right icon-guanbi"></i>
+            </div>
+            <div class="address-con">
+                <div class="left">
+                    <span ng-class="{'on':$index==0}" ng-repeat="item in OtherServicePlaceList">{{item}}</span>
+                </div>
+                <div class="right">
+                    <div ng-repeat="item in OtherServicePlace" ng-class="OtherServicePlaceList[0]===item.CityName?'address-ls':'address-ls hide'" data-city="{{item.CityName}}" select-address>
+                        <p class="border-bot" ng-bind="item.LocationName" data-locationid="{{item.LocationID}}" data-cityname="{{item.CityName}}"></></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 选择地址 end -->
+        <!-- 选择所在区域 start -->
+        <div class="address-info-pop">
+            <div class="foot_detailed_top border-bot">
+                <span>选择所在区域</span>
+                <i class="iconfont right icon-guanbi"></i>
+            </div>
+            <div class="point-tit border-bot">
+                <span class="on">请选择</span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="point-ls">
+                <!-- 动态生成城市 -->
+            </div>
+
+        </div>
+        <!-- 选择所在区域 end -->
+    </div>
+
+</body>
+<script src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/booking/individual-index.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170922103322"></script>
+
+</html>

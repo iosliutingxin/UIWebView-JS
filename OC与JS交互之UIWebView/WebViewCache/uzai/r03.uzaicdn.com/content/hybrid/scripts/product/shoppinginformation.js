@@ -1,0 +1,1 @@
+"use strict";!function(window,document,$){function init_height(){var windowh=$(window).height();$("#J_router_shoppinginformation ").height(windowh)}init_height(),api.endloading()}(window,document,jQuery);

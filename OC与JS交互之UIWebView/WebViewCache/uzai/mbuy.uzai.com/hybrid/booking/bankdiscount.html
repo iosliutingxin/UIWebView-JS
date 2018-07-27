@@ -1,0 +1,65 @@
+
+<meta charset="UTF-8"/>
+<div class="edit-bg edit-bank">
+    <div class="bank-header border-bot">
+        <a onclick="api.routerGoBack()"><i class="iconfont icon-back"></i></a>
+        <b>选择银行优惠</b>
+    </div>
+
+    <div id="bank-wrapper" class="wrapper2">
+        <div>
+            <!--银行优惠内容-->
+            <div class="bank-red-bg" ng-repeat="item in BanKPreferential.Activities" selectbankdiscount>
+                <div class="bank-discount" id="b_{{item.PreferentialID}}" ng-click="ChooseBankPreferntial(item,item.PreferentialID)">
+                    <div class="content">
+                        <p class="title">
+                            <i class="bank-icon"><img ng-src="{{item.BankImg}}"/></i>
+                            <b ng-bind="item.PreferentialName"></b>
+                            <span  class="circle" >
+                                <!--<i class="cirle"></i>-->
+                                <i class="iconfont icon-right-9"></i>
+                            </span>
+                        </p>
+                        <h4 class="clearfix lineTime">
+                            <!--按人头，如果AdaptationGroup=26是不限，就是总人数，27是按成人-->
+                            <b ng-if="item.ValuationWay===25&&item.AdaptationGroup===26" >￥{{item.MaxPreAmount/TotalPerson}}*{{TotalPerson}}</b>
+                            <b ng-if="item.ValuationWay===25&&item.AdaptationGroup===27" >￥{{item.MaxPreAmount/adultCount}}*{{adultCount}}</b>
+                            <!--按订单-->
+                            <b ng-if="item.ValuationWay===24" >￥{{item.MaxPreAmount}}*1</b>
+                            <span>有效期至{{item.EndDate|date:"yyyy-MM-dd"}}</span></h4>
+                        <div class="explain" ng-bind-html="item.Description | trustHtml">
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <!--<div class="bank-red-bg">-->
+            <!--<div class="bank-discount">-->
+                <!--<div class="content">-->
+                    <!--<p class="title">-->
+                        <!--<i class="bank-icon"><img src="../../images/booking/coupons-yes.png?v=5a4442bd9a"/></i>-->
+                        <!--<b>招商支行立减￥1000</b>-->
+                        <!--<span class="circle">-->
+                            <!--&lt;!&ndash;<i class="cirle"></i>&ndash;&gt;-->
+                             <!--<i class="iconfont icon-right-9"></i>-->
+                        <!--</span>-->
+                    <!--</p>-->
+                    <!--<h4 class="clearfix lineTime"><b>￥600X2</b><span>有效期至2016/10/10</span></h4>-->
+                    <!--<div class="explain">-->
+                        <!--使用工商银行储蓄卡支付全额立减1000元,每单最多使用2使用工商银行储蓄卡支付全额立减1000元,每单最多使用2次使用工商银行储蓄卡支付全额立减1000元,每单最多使用2次-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>--> 
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

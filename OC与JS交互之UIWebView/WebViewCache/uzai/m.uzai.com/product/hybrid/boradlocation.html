@@ -1,0 +1,63 @@
+<meta charset="UTF-8">
+<!-- 上车地点 子页面-->
+
+
+
+<!-- 头部 开始 -->
+<!-- 头部 开始 -->
+<header class="hd">
+    <!-- 滑动的时候北京变由透明变实 -->
+    <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 更多上车地点
+</header>
+<!-- 头部 结束 -->
+<div class="shoppinginformation J-router-content" id="j_che_wrapper">
+    <!--<div class="shoppingcon">-->
+        <div class="shoplist" find-purchase1>
+            <div class="shop" ng-repeat="CarInfo in ProductInfo.JouneryCarInfo">
+                <i class="iconfont icon-bus"></i>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                              <i class="dian"></i>
+                              发车时间:
+                          </span>
+                    <span class="shopafter fl">{{CarInfo.DepartureTime}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                              <i class="dian"></i>
+                              发车地点:
+                          </span>
+                    <span class="shopafter fl">{{CarInfo.StartingPlace}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                              <i class="dian"></i>
+                              返回地点:
+                          </span>
+                    <span class="shopafter fl">{{CarInfo.ReturnLocation}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                              <i class="dian"></i>
+                              <i class="thone">导</i><i class="thtwo">游</i>旗:
+                          </span>
+                    <span class="shopafter fl">{{CarInfo.TourGuide}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                              <i class="dian"></i>
+                              <i class="zione">备</i>注:
+                          </span>
+                    <span class="shopafter fl">{{CarInfo.Remarks}}</span>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    <!--</div>-->
+</div>
+
+
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/product/boradlocation.js?v=20170921183141"></script>

@@ -1,0 +1,60 @@
+<meta charset="UTF-8">
+<!-- 自费项目子页 -->
+
+
+
+<!-- 头部 开始 -->
+<!-- 头部 开始 -->
+<header class="hd">
+    <!-- 滑动的时候北京变由透明变实 -->
+    <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 自费项目说明
+</header>
+<!-- 头部 结束 -->
+<div class="shoppinginformation J-router-content" id="j_own_wrapper">
+    <div class="shoppingcon" id="j_own_iscroller">
+        <div class="shoplist ownitem" find-purchase1>
+            <div class="shop " ng-repeat="Selfpay in ProductInfo.Selfpay">
+                <i class="iconfont icon-ownpay"></i>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                        <i class="dian"></i>
+                        <i class="zione">名</i>称:
+                    </span>
+                    <span class="shopafter fl">{{Selfpay.Name}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                        <i class="dian"></i>
+                        <i class="thone">所</i><i class="thtwo">在</i>地:
+                    </span>
+                    <span class="shopafter fl">{{Selfpay.SeatOf}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                        <i class="dian"></i>
+                        参观时间:
+                    </span>
+                    <span class="shopafter fl">{{Selfpay.Time}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                        <i class="dian"></i>
+                        参考价格:
+                    </span>
+                    <span class="shopafter fl">{{Selfpay.Price}}</span>
+                </div>
+                <div class="shopline">
+                    <span class="shoppre fl">
+                        <i class="dian"></i>
+                        <i class="zione">说</i>明:
+                    </span>
+                    <span class="shopafter fl">{{Selfpay.Explain}}</span>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

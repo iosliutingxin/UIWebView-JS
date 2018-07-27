@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+<!-- 购买须知子页 -->
+
+
+<!--行程里面的购物须知页面-->
+<div class="buynoticepage" find-purchase>
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 购买须知
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content" id="j-purchase-wrapper">
+        <div class=" purchase" id="j-purchase-scroller" find-purchase1>
+
+            <div class="buynoticecon" ng-show="JouneryPurchaseNotice.InforMation!=''">
+                <div id="purchase_icon1" class="icon booknotice ">
+                    <i class="iconfont icon-bookingnotice"></i>
+                    <i>预订须知</i>
+                    <i class="iconfont icon-top tubiao fr"></i>
+                </div>
+                <div id="purchase_editor1"  class="editorcon border-top booknoticecon" ng-bind-html="JouneryPurchaseNotice.InforMation | trustHtml">
+                </div>
+            </div>
+
+            <div class="buynoticecon mt20" ng-show="JouneryPurchaseNotice.Shopping!=''">
+                <div id="purchase_icon2" class="icon contain">
+                    <i class="iconfont icon-buyinfo"></i>
+                    <i>购物说明</i>
+                    <i class="iconfont icon-top tubiao fr"></i>
+                </div>
+                <div id="purchase_editor2" ng-class="JouneryPurchaseNotice.InforMation!='' ? 'editorcon containcon disnone border-top': 'editorcon containcon border-top '" ng-bind-html="JouneryPurchaseNotice.Shopping | trustHtml">
+                </div>
+            </div>
+
+            <div class="buynoticecon mt20" ng-show="JouneryPurchaseNotice.Service!=''">
+                <div id="purchase_icon3" class="icon">
+                    <i class="iconfont icon-serverinfo"></i>
+                    <i>服务标准</i>
+                    <i class="iconfont icon-top tubiao fr"></i>
+                </div>
+                <div id="purchase_editor3" ng-class="(JouneryPurchaseNotice.InforMation!='' || JouneryPurchaseNotice.Shopping!='') ? 'editorcon disnone border-top'  : 'editorcon border-top '" ng-bind-html="JouneryPurchaseNotice.Service | trustHtml">
+                </div>
+            </div>
+
+            <div class="buynoticecon mt20" ng-show="JouneryPurchaseNotice.Additional!=''" >
+                <div id="purchase_icon4" class="icon">
+                    <i class="iconfont icon-addterms"></i>
+                    <i>附加条款</i>
+                    <i class="iconfont icon-top tubiao fr"></i>
+                </div>
+                <div id="purchase_editor4" ng-class="(JouneryPurchaseNotice.InforMation!='' || JouneryPurchaseNotice.Shopping!='' || JouneryPurchaseNotice.Service!='') ? 'editorcon disnone border-top'  : 'editorcon border-top '" ng-bind-html="JouneryPurchaseNotice.Additional | trustHtml">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

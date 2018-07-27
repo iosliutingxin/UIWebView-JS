@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<!-- 行程信息子页 -->
+<div class="buynoticepage">
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 行程信息
+    </header>
+    <!-- 头部 结束 -->
+    <div class="buynotice J-router-content" id="j-purchase-wrapper">
+        <div class=" purchase" id="j-purchase-scroller">
+
+            <div ng-repeat="EasyStroke in ProductInfo.EasyStrokeList" ng-class="$index == 0? 'buynoticecon ':'buynoticecon mt20'" find-purchase2>
+                <div class="icon booknotice">
+                    <i class="iconfont icon-bookingnotice"></i>
+                    <i ng-bind="EasyStroke.JouneryName"></i>
+                    <i class="iconfont tubiao icon-top fr"></i>
+                </div>
+                <div ng-class="$index == 0? 'editorcon border-top booknoticecon ':'editorcon border-top booknoticecon disnone'" >
+
+                    <ul class="j-img-show j-img-pinch">
+                        <li ng-repeat="imgurl in EasyStroke.JouneryImgList" find-comment-pop>
+                            <img data-self="{{ imgurl }}" class="img-lazy" src="" data-large="{{imgurl}}" onerror="onerror=null;src='../../../r03.uzaicdn.com/content/hybrid/images/product/comment-default.jpg?v=ab8bc6feb9'" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        
+
+        </div>
+
+    </div>
+</div>

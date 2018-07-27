@@ -1,0 +1,1 @@
+"use strict";!function(window,document,$){function boradheight(){var winh=$(window).height();$("#J_router_boradlocation").height(winh)}boradheight(),api.endloading()}(window,document,jQuery);

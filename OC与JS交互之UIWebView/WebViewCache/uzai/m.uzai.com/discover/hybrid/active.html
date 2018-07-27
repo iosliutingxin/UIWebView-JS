@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app='MyModule' ng-controller='MyCtrl'>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+
+    <meta name="keywords" content="" >
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170911112852"></script>
+
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/base.css?v=20170911112852" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/discover/case_details.css?v=20170911112852" rel="stylesheet">
+    <title></title>
+</head>
+
+<body>
+    <div class="content">
+        <!-- 头部 -->
+        <header class="bg-transparent white-topbar">
+            <a target="_self" ng-click="callback('https://m.uzai.com/discover/index.html',true,false)" class="fl top-back"><i class="left-ico black-ico"></i></a>
+            <a class="collection" ng-show="isShow" ng-click="addSubjectToFavorite()"></a>
+            <a class="share" ng-show="isShow" ng-click="shareSubject(SubjectName,SubjectName,FilePath,pageUrl)"></a>
+            <div class="title">
+                <h1 ng-bind="title_m"></h1>
+            </div>
+        </header>
+        <!-- 内容 -->
+        <div id='wrapper'>
+            <div class="main">
+                <div class="main_top">
+                    <a href="#"><img ng-src="{{FilePath}}" /></a>
+                    <p ng-bind="SubjectName"></p>
+                </div>
+                <div class="main_m">
+                    <div ng-repeat='value in values' on-finish-render>
+                        <img data-src="{{value.Picture}}" />
+                        <p ng-bind="value.DetailsDesc"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170911112852"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/discover/case_details.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/libs/plugin/iscroll/iscroll.js?v=20170911112852"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/pagestatistics.js?v=20170911112852" async></script>
+</body>
+
+</html>

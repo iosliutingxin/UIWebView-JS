@@ -1,0 +1,25 @@
+<meta charset="UTF-8">
+<!-- 自费项目子页 -->
+
+
+<!-- 头部 开始 -->
+<header class="hd">
+    <!-- 滑动的时候北京变由透明变实 -->
+    <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 自费项目说明
+</header>
+<!-- 头部 结束 -->
+<div id="j_ownitem_wrapper" class="ownitem shoppinginformation J-router-content">
+    <div class="shoppingcon j_ownitem_scroller">
+
+        <!-- 购物块开始 -->
+        <div class="shop" find-purchase1>
+            <i class="iconfont icon-ownpay"></i>
+
+            <div class="shopdatas" ng-bind-html="JouneryPurchaseNotice.Expense |trustHtml">
+            </div>
+
+        </div>
+        <!-- 购物块结束 -->
+
+    </div>
+</div>

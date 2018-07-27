@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html ng-app="calendarapp" lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <title>选择日期</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="Shortcut Icon" href="//r.uzaicdn.com/favicon-sj.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper.min.css?v=20170921183141" />
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/hybrid/styles/product/calendar.css?v=20170921183141" />
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/vstore/addbutton.css?v=20170921183141" rel="stylesheet">
+</head>
+<body ng-controller="calendardetail">
+    <div class="uzai-header">
+        <i class="iconfont icon-back" ng-click="backpage();"></i>
+        <b>选择日期</b>
+    </div>
+    <div id="wrapper">
+        <div class="uzai-container">
+            <!--日历部分-->
+            <div class="uzai-calender">
+                <div class="red-bg">
+
+                    <div class="switch-btn">
+                        <b class="left"></b>
+                        <b class="right"></b>
+                        <div class="center zHide">
+                            <p>
+                                <span class="month"></span>
+                                <span class="year">
+                                    <b>月</b><br />
+                                    <b></b>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <i class="triangles"></i>
+                    <!--星期-->
+                    <div class="calendar-week">
+                        <ul class="week-list"></ul>
+                    </div>
+
+                </div>
+                <div class="container-center">
+                    <div class="device">
+                        <a class="arrow-left" href="#"></a>
+                        <a class="arrow-right" href="#"></a>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper box-center" id="list">
+
+                            </div>
+                        </div>
+                        <div class="pagination"></div>
+                    </div>
+                    <!--库存-->
+                    <div class="stock zHide"><b class="m"></b>月<b class="d"></b>日出发仅剩<b class="nums">  </b>个余位</div>
+                </div>
+            </div>
+
+            <!--优惠活动部分-->
+            <div class="uzai-discount zHide" ng-show="dateBenefitsCount > 0">
+
+                <div class="uzai-main">
+                    <a ng-click="openBenefitPage()">
+                        <div class="dis-title border-bot">
+                            <span class="left fl">
+                                <i class="iconfont icon-discount-m"></i>
+                                <b>优惠活动</b>
+                            </span>
+                            <span class="right fr">
+                                <b ng-bind="dateBenefitsCount"></b>
+                                <i class="iconfont icon-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <ul class="dis-list">
+                        <li class="clearfix" ng-repeat="benefit in dateBenefitArray track by $index" ng-if="$index < 2">
+                            <i ng-bind="benefit.split('-')[0]"></i>
+                            <b ng-bind="benefit.split('-')[1]"></b>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!--选择出行人数-->
+            <div class="uzai-numbers zHide">
+                <div class="people-main">
+                    <div class="dis-title border-bot">
+                        <span class="left fl">
+                            <i class="iconfont icon-peoples"></i>
+                            <b>选择出行人数</b>
+                        </span>
+                    </div>
+                    <ul class="people-choose number-people">
+                        <li class="clearfix">
+                            <span class="left fl">
+                                <b>成人</b>
+                                <i>?</i>
+                                <b><em>{{adultprice}}</em>/人</b>
+                            </span>
+                            <span class="right fr">
+                                <i class="aLess iconfont icon-jianhao"></i>
+                                <b id="adult">1</b>
+                                <i class="aAdd bgActive iconfont icon-jiahao"></i>
+                            </span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="left fl">
+                                <b>儿童</b>
+                                <i ng-show="isshowchildpricedesc">?</i>
+                                <i class="nothing" ng-show="!isshowchildpricedesc"></i>
+                                <b><em>{{childpice}}</em>/人</b>
+                            </span>
+                            <span class="right fr">
+                                <i class="cLess iconfont icon-jianhao"></i>
+                                <b id="child">0</b>
+                                <i class="cAdd active iconfont icon-jiahao"></i>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uzai-footer border-top">
+        <ul>
+            <li class="no-taunts">
+                请选择出游团期
+            </li>
+            <li>
+                <span><b></b>行程</span>
+            </li>
+            <li>
+                <i ng-click="next($event);">下一步</i>
+            </li>
+        </ul>
+    </div>
+    <!--遮罩层-->
+    <div class="cal-mask zHide"></div>
+    <!--弹窗内容-->
+    <div id="cal-pop" class="zHide">
+        <div class="pop-container">
+            <div class="title">
+                <i class="iconfont icon-cost"></i>
+            </div>
+            <h4>起价说明</h4>
+            <div class="tips">
+                本起价是可选出发日期中，按2人出行共住一间房核算的最低单人价格。产品价格会根据您所选择的出发日期、出行人数、入住酒店房型、航班或交通以及所选附加服务的不同而有所差别。
+            </div>
+        </div>
+        <i class="iconfont icon-guanbi"></i>
+    </div>
+    <!--弹窗内容-->
+    <div id="cal-pop-child" class="zHide">
+        <div class="pop-container">
+            <div class="title">
+                <i class="iconfont icon-cost"></i>
+            </div>
+            <h4>起价说明</h4>
+            <div class="tips" ng-bind="childpricedesc">
+
+            </div>
+        </div>
+        <i class="iconfont icon-guanbi"></i>
+    </div>
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper-3.3.1.min.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/plugin/swiper/swiper.animate.min.js?v=20170921183141"></script>
+
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/calendar.js?v=20170921183141"></script>
+
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/pagestatistics.js?v=20170921183141"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/vstore/iswechat.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/bookingcity.js?v=20170921183141"></script>
+</body>
+
+</html>

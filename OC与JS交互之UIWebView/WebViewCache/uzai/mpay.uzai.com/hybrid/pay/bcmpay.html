@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="bcm">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <link href="https://at.alicdn.com/t/font_oovy1kypv6yr2j4i.css?v=20170921183141" rel="stylesheet">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/booking.css?v=20170921183141" rel="stylesheet">
+    <!--<link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/book-payment.css?v=20170921183141" rel="stylesheet">-->
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/book-payment.css?v=20170921183141" rel="stylesheet">
+    <style type="text/css">
+        @charset "UTF-8";
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+    </style>
+    <title>交通银行信用卡快捷支付</title>
+</head>
+
+<body ng-controller="Payment" ng-cloak>
+
+    <!-- 头部 开始 -->
+    <header class="white-topbar absolute">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a class="back fl" ng-click="goBack()"><i class="iconfont icon-back"></i></a>
+        <div>
+            <div class="title">
+                <h2>交通银行信用卡快捷支付</h2>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- 头部 结束 -->
+    <div class="jiaohang uzai-wrapper">
+        <div class="jiage">
+            <i class="iconfont icon-money"></i>应付总额：<em>￥<span>{{orderPrepayMent}}</span></em>
+        </div>
+        <div class="jiaohang_m">
+            <div class="jiaohang_m_li border-bot">
+                <span>卡号</span>
+                <input id="txt_cardNo" type="tel" placeholder="16位交通银行信用卡卡号" maxlength="16" ng-model="cardNoModel" ng-change="updatePayButtonStyle()" />
+            </div>
+            <div class="jiaohang_m_li border-bot">
+                <span>有效期</span>
+                <input id="txt_expiryDate" type="month" ng-model="expiryDateModel" onfocus="expiryDateFocus()" onblur="expiryDateBlur()" ng-change="slashCompletion(expiryDateModel)" maxlength="5" />
+                <b id="prompt">信用卡有效期</b>
+            </div>
+            <div class="jiaohang_m_li border-bot">
+                <span>手机验证码</span>
+                <input id="txt_validateCode" type="tel" placeholder="6位数字验证码" maxlength="6" ng-model="validateCodeModel" ng-change="updatePayButtonStyle()">
+                <input id="btn_validateCode" type="button" class='yzm' value="获取验证码" ng-click="sendValidateCode()" />
+            </div>
+            <div class="jiaohang_m_li">
+                <span>持卡人姓名</span>
+                <input id="txt_cardholder" type="text" placeholder="开户时提供的真实姓名" maxlength="30" ng-model="cardholderModel" ng-change="updatePayButtonStyle()" />
+            </div>
+        </div>
+    </div>
+    <!--遮罩层-->
+    <div class="mask" ng-show="showPreferentialExpire" ng-click="clickMask()">
+    </div>
+    <!-- 优惠变更提示 -->
+    <div class="payment-common-pop" ng-if="showPreferentialExpire">
+        <div class="container">
+            <div class="title">
+                <i class="iconfont icon-bookingnotice"></i>
+            </div>
+            <h4>优惠变更提示</h4>
+            <div class="tips">
+                <p>优惠已下线或者过期。确定要继续支付吗?</p>
+            </div>
+            <div class="bottom border-top bottom_a">
+                <a class="cancel-btn son-box border-right" ng-click="goBack()">返回</a>
+                <a class="ok-btn son-box" ng-click="submit()">继续支付</a>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 开始 -->
+    <footer class="payment-footer absolute">
+        <div class="foot">
+            <div class="agreement on radio-l">
+                我已阅读并同意<a class="red" href="#/agreement">《快捷支付用户协议》</a>
+                <a class="fr radio-btn">
+                    <input type="checkbox" id="agreement" name="agreement" ng-click="agreement()">
+                    <i class="iconfont icon-round-on gray"></i>
+                </a>
+            </div>
+            <div class="btn-reg border-top">
+                <a id="submitPay" class="reservation-btn disable" ng-click="submit()" disabled="disabled">立即支付</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </footer>
+    <!-- 底部 结束 -->
+
+    <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/pay/bcmpay.js?v=20170921183141"></script>
+    <script>
+        api.__asyncLoadingCode__ = '0';
+    </script>
+</body>
+
+</html>

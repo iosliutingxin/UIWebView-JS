@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="flippedapp" style="font-size: 50px;">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/pay/card_pay.css?v=20170921183141" rel="stylesheet">
+    <title>众信心动卡支付</title>
+</head>
+
+<body ng-controller="flippedpay">
+
+    <!-- 头部 开始 -->
+    <header class="white-topbar">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <div class="con border-bot">
+            <a class="back fl"><i class="iconfont icon-back" onclick="back();"></i></a>
+            <div class="title">
+                <h1>众信心动卡支付</h1>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+        <span class="i"><i class="iconfont icon-bankcard"></i></span>
+        <div class="main_top">
+            <div class="main_top1">
+                <p ng-bind-html="ProductName | trustHtml"></p>
+                <div class="main_top2">
+                    <i class="iconfont icon-money"></i> 应付总额：<span id="orderaccount" ng-bind="OrderAccount"></span>
+                </div>
+            </div>
+        </div>
+        <div class="main_m">
+            <div class="main_m1">
+                <div class="right" onclick="bindcard();">绑定心动卡</div>
+                <div class="left"><div class="w_14">可用金额:</div><span ng-bind="FlippedCardAccount"></span></div>
+            </div>
+            <div class="main_m2">
+                <div class="main_m2_l">使用金额:</div>
+                <div class="main_m2_r yzm_jine">
+                    <input type="number" id="consumeaccount" placeholder="请输入金额" />
+                </div>
+            </div>
+            <div class="main_m2">
+                <div class="main_m2_l">验证码:</div>
+                <div class="main_m2_r">
+                    <input type="number" id="validcode" placeholder="请输入验证码" />
+                    <div class="yzm">获取验证码</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bot">确认付款</div>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+    <script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/pay/card_pay.js?v=20170921183141"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<meta charset="UTF-8"/>
+
+<div class="edit-bg" edit-bg>
+
+    <div class="trave-header border-bot">
+        <a onclick="api.routerGoBack()" class="back" ng-click="tarveBack()"><i class="iconfont icon-back"></i></a>
+        <b>选择出游人</b>
+        <a href="#/editpeople">
+            <em ng-click="addtravePeople()">添加出游人</em>
+        </a>
+    </div>
+    <div id="trave-wrapper" class="wrapper2">
+        <div>
+            <input type="hidden" id="editContacterId" value="{{contactor.ID}}" />
+            <p class="choose-title" ng-if="contacters.length>0">请选择<em>{{TotalPerson}}</em>位出游人</p>
+
+            <!--出行人信息-->
+            <div class="trave-people" >
+                <ul>
+                    <li ng-repeat="contactor in contacters" travel-people>
+                        <dl>
+                            <span class="choosing">
+                                <i class="iconfont icon-right-9"></i>
+                            </span>
+                            <p class="passenger">
+                                <b class="name" ng-bind="contactor.UserName" paperkeyid="{{contactor.PaperKeyId}}" paperid="{{contactor.ContacterId}}"></b>
+                                <b class="passport">{{contactor.PaperName}}<em>{{contactor.PaperNumber}}</em></b>
+                            </p>
+                        </dl>
+                        <em ng-if="contactor.IsNeedComplete==1" class="tips">(信息待完善)</em>
+                        <a href="#/editpeople" ng-click="toeditpeople(contactor.ContacterId , contactor.PaperKeyId)" class="right-a"><i class="iconfont edit icon-edit"></i></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>  
+
+          
+    <!-- 点击返回提示 -->
+    <div class="payment-common-pop zHide" id="payment-common-pop" edit-choose>
+        <div class="container">
+            <div class="title"><i class="iconfont icon-tip"></i></div>
+            <h4>温馨提示</h4>
+            <div class="tips">
+                <p class="cen">出游人尚未完成选择，返回将放弃选择。</p>
+            </div>
+            <div class="bottom border-top layout-box">
+                <a class="cancel-btn son-box border-right" onclick="api.routerGoBack()">返回</a>
+                <a class="ok-btn son-box active">继续选择</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="trave-add">
+    <a ng-click="chuxingrensave()" ng-if="contacters.length>0">
+        <div class="trave-footer">
+            完成
+        </div>
+    </a>
+    <a ng-if="!(contacters.length>0)">
+        <div class="trave-footer-hui">
+            完成
+        </div>
+        </a>
+    </div>
+<div class="edit-mask-bg zHide"></div>

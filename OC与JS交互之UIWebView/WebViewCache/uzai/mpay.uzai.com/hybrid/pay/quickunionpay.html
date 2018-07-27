@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html ng-app="uzai">
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta https-equiv="Expires" content="-1">
+    <meta https-equiv="Cache-Control" content="no-cache">
+    <meta https-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/pay/quick-unionpay.css?v=20170921183141" rel="stylesheet">
+    <style type="text/css">
+        @charset "UTF-8";
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+    </style>
+    <title>银联快捷支付</title>
+</head>
+
+<body ng-controller="QuickUnionPay" ng-cloak>
+    <div class="cons uzai-wrapper">
+        <div class="mask" ng-show="showDetailMask || showErrorOpen || showErrorCardBin || showCancelMask" ng-click="clickMask()"></div>
+        <!--卡号未开通提示弹框开始-->
+        <div class="payment-common-pop" ng-if="showErrorOpen">
+            <div class="container">
+                <div class="title">
+                    <i class="iconfont icon-cost"></i>
+                </div>
+                <h4>温馨提示</h4>
+                <div class="tips">
+                    <p class="gray cen">您输入的银行卡号未开通快捷支付</p>
+                    <a class="btn cen" ng-click="otherpay()">其它支付方式</a>
+                    <a class="btn cen j_ktpay" href="#/childunionpay">前往开通</a>
+                </div>
+                <div class="bottom border-top layout-box">
+                    <a class="cancel-btn son-box" ng-click="clickMask()">取消</a>
+                </div>
+            </div>
+        </div>
+        <!--卡号不符合卡bin提示-->
+        <div class="payment-common-pop" ng-if="showErrorCardBin">
+            <div class="container">
+                <div class="title">
+                    <i class="iconfont icon-cost"></i>
+                </div>
+                <h4>温馨提示</h4>
+                <div class="tips">
+                    <p class="gray cen">您输入的银行卡号不符合优惠条件</p>
+                    <p class="gray cen red">应付总额：¥<label ng-bind="orderPrepayMent+quickpayment.PreferentialMoney"></label></p>
+                    <a class="btn cen" ng-click="continuepay()">继续支付</a>
+                    <a class="btn cen" ng-click="otherpay()">其它支付方式</a>
+                </div>
+                <div class="bottom border-top layout-box">
+                    <a class="cancel-btn son-box" ng-click="clickMask()">取消</a>
+                </div>
+            </div>
+        </div>
+        <!-- 点击返回提示 -->
+        <div class="payment-common-pop" ng-if="showCancelMask">
+            <div class="container">
+                <div class="title">
+                    <i class="iconfont icon-bookingnotice"></i>
+                </div>
+                <h4>温馨提示</h4>
+                <div class="tips">
+                    <p class="cen">尚未完成支付,返回支付验证码将失效!</p>
+                </div>
+                <div class="bottom border-top bottom_a">
+                    <a class="cancel-btn son-box border-right" ng-click="backoperation()">返回</a>
+                    <a class="ok-btn son-box" ng-click="clickMask()">继续支付</a>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 开始 -->
+        <div class="white-topbar">
+            <div class="con border-bot">
+                <a class="back fl" ng-click="goBack()"><i class="iconfont icon-back"></i></a>
+                <div class="fr">
+                    <a class="more" href="tel:{{Telphone}}"><i class="iconfont icon-telphone"></i></a>
+                </div>
+                <div class="title">
+                    <h1>银联快捷支付</h1>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 结束 -->
+        <!--内容开始-->
+        <div class="dec">
+            <span class="bankcardimg"></span>
+            <div class="dec-con">
+                <h2 id="ProductName" ng-bind-html="quickpayment.OrderDetail.UzaiOrder.ProductName| trustHtml"></h2>
+            </div>
+            <div class="uniquck-price">
+                <i class="iconfont icon-money iconcolor"></i>
+                <em class="font28 cor999">应付总额：</em>
+                <i class="font32 coreb4c58">¥<label ng-bind="orderPrepayMent"></label></i>
+                <a class="checkbtn" ng-click="showOrderDetail()" ng-if="quickpayment.OrderDetail.UzaiOrderOtherUser.length > 0 > 0">核对明细</a>
+            </div>
+        </div>
+
+        <div class="ktpay-con">
+            <a class="ktpay j_ktpay" href="#/childunionpay">未开通快捷支付，请点击这里开通</a>
+        </div>
+        <!--内容结束-->
+        <div class="pay-card border-bot b-top">
+            <img src="../../../r03.uzaicdn.com/content/hybrid/images/booking/bank/bank-yinlian.png?v=4174403909" class="pay-tubiao">
+            <pan class="font28 cor666">
+                使用银联快捷支付</span>
+                <!--<em class="youhui">优惠:<label ng-bind="quickpayment.PreferentialMoney"></label>元</em>-->
+        </div>
+        <!--验证码开始-->
+        <div class="pay-con">
+            <div class="pay-input payinput1 border-bot">
+                <em>银行卡号</em>
+                <input type="tel" class="cardnuminput j_input_num" onpaste="return false" placeholder="16-19位银联卡号">
+
+            </div>
+            <div class="pay-input payinput2 b-bot">
+                <em>手机验证码</em>
+                <input type="tel" class="yzminput j_input_num" onpaste="return false" placeholder="6位短信验证码">
+                <a class="pay-btn getyzm">获取验证码</a>
+                <a class="tsyzm hide">正在发送...</a>
+            </div>
+        </div>
+        <em class="zhanwei"></em>
+        <!--验证码结束-->
+        <div class="pay-footer">
+            <a class="ljpaybtn disable" ng-click="ljPay()">立即支付</a>
+        </div>
+        <!-- 核对明细 开始 -->
+        <div class="detailed-pop" ng-if="showDetailMask">
+            <div class="top">
+                <p class="title">核对明细</p>
+            </div>
+            <div class="overhidden-box">
+                <div class="scroll-box" id="detailed-pop">
+                    <div class="con">
+                        <p class="text" ng-bind-html="quickpayment.OrderDetail.UzaiOrder.ProductName| trustHtml"></p>
+                        <p class="bot border-bot">
+                            <i class="iconfont icon-money"></i>
+                            应付总额：<em class="red">￥<label ng-bind="orderPrepayMent"></label></em>
+                        </p>
+                    </div>
+                    <div class="center">
+                        <div class="part border-bot" ng-if="quickpayment.OrderDetail.UzaiOrderSonList.length > 0">
+                            <p class="tit">拆单信息</p>
+                            <p ng-repeat="subOrder in quickpayment.OrderDetail.UzaiOrderSonList">
+                                <span class="fl txt-cut">
+                                    <i ng-bind="subOrder.name"></i>(
+                                    <em ng-if="subOrder.State==1">已支付</em>
+                                    <em ng-if="subOrder.State==0" class="red">未支付</em>
+                                    <em ng-if="subOrder.State==2" class="red">取消</em>）
+                                    <i ng-if="subOrder.DingJin=='订金'" class="iconfont icon-ding"></i>
+                                </span>
+                                <span class="fr red">￥<i ng-bind="subOrder.Payprice"></i></span>
+                            </p>
+                        </div>
+                        <div class="part border-bot">
+                            <p class="tit">联系人</p>
+                            <p>
+                                <span class="fl txt-cut" ng-bind="quickpayment.OrderDetail.UzaiOrder.UserName"></span>
+                                <span class="fr" ng-bind="quickpayment.OrderDetail.UzaiOrder.Tel"></span>
+                            </p>
+                        </div>
+                        <div class="part border-bot">
+                            <p class="tit">出游人</p>
+                            <p ng-repeat="user in quickpayment.OrderDetail.UzaiOrderOtherUser">
+                                <span class="fl txt-cut" ng-bind="user.UserName"></span>
+                                <span class="fr" ng-bind="user.DocumentsCode"></span>
+                            </p>
+                        </div>
+                        <div class="part border-bot">
+                            <p class="tit">团费</p>
+                            <p ng-show="quickpayment.OrderDetail.UzaiOrder.AuditFee">
+                                <span class="fl">成人</span>
+                                <span class="fr red">￥<label ng-bind="quickpayment.OrderDetail.UzaiOrder.AuditFee"></label></span>
+                            </p>
+                            <p ng-show="quickpayment.OrderDetail.UzaiOrder.ChildFee">
+                                <span class="fl">儿童</span>
+                                <span class="fr red">￥<label ng-bind="quickpayment.OrderDetail.UzaiOrder.ChildFee"></label></span>
+                            </p>
+                        </div>
+                        <div class="part border-bot" ng-if="quickpayment.OrderDetail.AdditionalProduct.length > 0 || additionalExtras.length > 0">
+                            <p class="tit">附加产品</p>
+                            <p ng-repeat="additional in quickpayment.OrderDetail.AdditionalProduct">
+                                <span class="fl txt-cut" ng-bind="additional.TypeName"></span>
+                                <span class="fr red">￥<label ng-bind="additional.PriceAll"></label></span>
+                            </p>
+                            <p ng-repeat="additionalExtra in additionalExtras">
+                                <span class="fl txt-cut" ng-bind="additionalExtra.ModifyName"></span>
+                                <span class="fr red">￥<label ng-bind="additionalExtra.ModefyPirce"></label></span>
+                            </p>
+                        </div>
+                        <div class="part border-bot" ng-if="(quickpayment.IsPayPreferential && !quickpayment.PrefIsExpired) || preferentialExtras.length > 0">
+                            <p class="tit">优惠</p>
+                            <div ng-if="quickpayment.OrderDetail && quickpayment.OrderDetail.UzaiPreferentialRecord">
+                                <p ng-repeat="prefer in quickpayment.OrderDetail.UzaiPreferentialRecord">
+                                    <span class="fl txt-cut" ng-bind="prefer.PreferentialName"></span>
+                                    <span class="fr red">-￥<label ng-bind="prefer.TotalMoney"></label></span>
+                                </p>
+                            </div>
+                            <p ng-if="quickpayment.Jifen>0">
+                                <span class="fl">积分</span>
+                                <span class="fr red">-￥<label ng-bind="quickpayment.Jifen"></label></span>
+                            </p>
+                            <p ng-if="quickpayment.ActiveCode>0">
+                                <span class="fl">优惠券</span>
+                                <span class="fr red">-￥<label ng-bind="quickpayment.ActiveCode"></label></span>
+                            </p>
+                            <p ng-repeat="preferentialExtra in preferentialExtras">
+                                <span class="fl txt-cut" ng-bind="preferentialExtra.ModifyName"></span>
+                                <span class="fr red">-￥<label ng-bind="-preferentialExtra.ModefyPirce"></label></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="close-btn iconfont icon-guanbi" ng-click="clickMask()"></a>
+        </div>
+        <!-- 核对明细 结束 -->
+        <script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+        <script src=" ../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+        <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/pay/quickunionpay.js?v=20170921183141"></script>
+</body>
+
+</html>

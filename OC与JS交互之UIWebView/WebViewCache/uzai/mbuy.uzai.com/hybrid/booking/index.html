@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html ng-app="booking" style="font-size:48px" ng-controller="bookContent">
+
+<head lang="zh-cn">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="keywords" content="私人订制旅游,订制旅游,高端旅游,订制旅行">
+    <meta name="description" content="">
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170922103322"></script>
+
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/vstore/addbutton.css?v=20170922103322" rel="stylesheet">
+    <link href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/booking.css?v=20170922103322" rel="stylesheet">
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/hybrid/styles/booking/book-sub-page.css?v=20170922103322"/>
+    <title ng-bind-html="ProductName | trustHtml">预订-众信悠哉旅游网</title>
+</head>
+
+<body ondblclick="return false;">
+    <!-- 此外,二级页面都是拉出来的那种效果 -->
+    <div id='uzai-wrapper' class='uzai-wrapper'>
+    <!-- 头部 开始 -->
+    <header class="white-topbar">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <div class="con border-bot">
+            <a class="back fl" ng-click="GoBackProductDetail()"><i class="iconfont icon-back"></i></a>
+
+            <div class="fr">
+                <a class="more ng-cloak" href="tel:{{Telphone}}"><i class="iconfont icon-telphone"></i></a>
+            </div>
+            <div class="title">
+                <h1>1/2填写订单</h1>
+            </div>
+        </div>
+    </header>
+
+    <!--<form name='myForm' method="post" ng-submit='submitForm()'>-->
+
+    <!-- 头部 结束 -->
+    <div id="wrapper">
+        <div class="icon-main-top">
+            <i></i>
+        </div>
+        <div class="icon-main-top-0">
+            <div class="iconfont icon-detail-info"></div>
+            <i></i>
+        </div>
+        <div class="main1">
+            <div class="main1-top-0"></div>
+            <div class="main1-top-1">
+                <h2 ng-bind-html="ProductName | trustHtml"></h2>
+
+                <div class="trip" ng-if="JouneryGroupName!=''&&JouneryGroupName!==null">
+                    <i class="iconfont stroke icon-daohangxianlu"></i><b>行程：</b><span
+                        class="ng-cloak">{{JouneryGroupName}}</span>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="main1-top-2">
+                <span class="ng-cloak"><i class="iconfont icon-point-address"></i>{{StartCity}}出发</span>
+                <span class="ng-cloak"><i class="iconfont icon-calendar"></i>{{goDate|date:"yyyy/MM/dd"}}</span>
+                <span class="ng-cloak"><i class="iconfont icon-peoples"></i>{{adultCount}}成人<a ng-if="childCount>0">{{childCount}}儿童</a></span>
+            </div>
+        </div>
+        <div class="main2">
+            <div class="main2_top">
+                <div class="main2_top_left"><i class="iconfont icon-mail-people"></i>联系人</div>
+                <div class="main2_top_right" id="contactBook" ng-click="ContactBook()"><span class=""><i
+                        class="iconfont icon-mail-list"></i></span>通讯录<i class="iconfont fr icon-right"></i></div>
+            </div>
+            <div class="main2_m">
+                <div class="main2_m1">
+                    <div class="main2_m_left">姓&nbsp;&nbsp;&nbsp; 名<span>•</span></div>
+                    <div class="main2_m_right border-bot">
+                        <input type="text" placeholder="填写联系人姓名" maxlength=20 onblur="validate(this,1);"
+                               onkeydown="validate(this,1)" onkeypress="validate(this,1)" ng-model="contactName"
+                               id="contactName"/>
+                    </div>
+                </div>
+                <div class="main2_m1">
+                    <div class="main2_m_left">手机号<span>•</span></div>
+                    <div class="main2_m_right border-bot">
+                        <input type="number" placeholder="填写联系人手机号" onblur="validate(this,2)" onkeyup="validate(this,2)"
+                               onkeypress="validate(this,2)" ng-model="contactPhone" id="contactPhone"/>
+                    </div>
+                </div>
+                <div class="main2_m1">
+                    <div class="main2_m_left">邮&nbsp;&nbsp;&nbsp; 箱</div>
+                    <div class="main2_m_right check-email">
+                        <input type="text" class="v_input_text" id="email" ng-model="email" value=""
+                               data-prompt="v_input_text" placeholder="选填，用于接收行程书">
+                        <input type="text" class="js-prompt-input v_input_text" readonly="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main2">
+            <a href="#/travepeople" ng-click="trave_people_init();">
+                <div class="main2_top">
+                    <div class="main2_top_left"><i class="iconfont icon-peoples"></i>出游人</div>
+                    <div class="main2_top_right"><b id="xuanzechuyourenflag" class="ng-cloak">{{TravellerText}}</b><i
+                            class="iconfont fr icon-right"></i></div>
+                </div>
+            </a>
+
+            <div class="main4_m paddb20">
+                <div class="overhidd" id="choseTravelList"></div>
+            	<div class="main4_m1_more" data-height='3'><i class="iconfont icon-bottom"></i>
+            </div>
+        </div>
+    </div>
+        <!--上车地点开始-->
+        <div class="main2" ng-if="BoardingLocationList.length>0" id="BoardingLocationDiv">
+       
+            <div class="main2_top">
+                <div class="main2_top_left"><i class="iconfont icon-vehicle-4"></i>上车地点
+                </div>
+                <a href="#/bdlocation" ng-if="BoardingLocationList.length>1">
+                    <div class="main2_top_right" >
+                        <b id="">更换</b><i class="iconfont fr icon-right"></i>
+                    </div>
+                </a>
+
+</div>
+      
+        <div class="bdlocaion">
+            <div class="bdlocaion-bg">
+                <em>上车时间：</em>
+                <i  ng-bind="BoardingLocationList[0].BoardingTime"></i>
+            </div>
+        </div>
+        <div class="bdlocaion">
+            <div class="bdlocaion-bg">
+                <em>发车地点：</em>
+                <i  ng-bind="BoardingLocationList[0].DepartLocation"></i>
+            </div>
+        </div>
+        <div class="bdlocaion">
+            <div class="bdlocaion-bg">
+                <em>返回地点：</em>
+                <i ng-bind="BoardingLocationList[0].BackLocation"></i>
+            </div>
+            </div>
+        <p class="location-note" ng-if='BoardingLocationList[0].Remark!=""'>＊{{BoardingLocationList[0].Remark}}</p>
+        <p class="location-explain">本线路按预订先后顺序安排座位，不保证座位靠窗、靠前，暂无上门接车服务，敬请谅解</p>
+        </div>
+        <!--上车地点结束-->
+        <div class="main2">
+            <div class="main2_top">
+                <div class="main2_top_left"><i class="iconfont icon-discount-m"></i>优惠方案</div>
+                <div class="main2_top_right prompt" ng-if="BanKPreferential.Activities.length>0&&IsShowPreferential">
+                    银行优惠与标准优惠不能同时使用
+                </div>
+            </div>
+            <div class="main4_m">
+                <div class="standard_discount" ng-if="BanKPreferential.Activities.length>0 && IsShowPreferential">
+                    <div class="bank_discount">
+                        <i class="iconfont left f4 icon-bankcard"></i>
+                        <span>银行优惠</span>
+                        <a id="bank_list_url" href="#/bankdiscount" ng-if="BanKPreferential.Activities.length>1">
+                            <i class="iconfont fr icon-right"></i>
+                        </a>
+
+                        <div class="discount_max"
+                             ng-if="MaxBankPreferential==true && PreferentialSolution.length==2&&IsShowPreferential">
+                            (已为您选择最大优惠)
+                        </div>
+                    </div>
+                    <div class="standard_discount_m border-top"
+                         ng-if="DefautBanKPreferential.PreferentialName!='' && DefautBanKPreferential.PreferentialName!=undefined">
+                        <div class="list">
+                            <span class="top">银行优惠</span>
+                            <span class="li" ng-bind="DefautBanKPreferential.PreferentialName"></span>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="standard_discount marb0 red_hover">
+                    <div class="standard_discount_top">
+                        <i class="iconfont left icon-discount-m"></i>
+                        <span>标准优惠</span>
+
+                        <input type="checkbox" id="simple" ng-click="CheckPreferntial()"
+                               ng-if="BanKPreferential !== undefined && IsShowPreferential">
+                        <label for="simple" class="green" id="simpleChoose"
+                               ng-if="BanKPreferential !== undefined && IsShowPreferential"></label>
+
+                        <div class="discount_max"
+                             ng-if="MaxBankPreferential==false && PreferentialSolution.length==2&&IsShowPreferential">
+                            (已为您选择最大优惠)
+                        </div>
+                    </div>
+                    <div class="standard_discount_m">
+
+                        <div class="list" ng-repeat="item in StandardPreferential.Activities"
+                             ng-if="!isUseCoupons">
+                            <span class="top" ng-bind="item.SubTypeName"></span>
+                            <span class="li" ng-bind="item.PreferentialName"></span>
+
+                            <div class="clear"></div>
+                        </div>
+                        <div class="list" ng-repeat="item in StandardPreferential.Activities"
+                             ng-if="isUseCoupons&&item.ParentTypeId!=2">
+                            <span class="top" ng-bind="item.SubTypeName"></span>
+                            <span class="li" ng-bind="item.PreferentialName"></span>
+
+                                <div class="clear"></div>
+                            </div>
+
+                        <!--   <div class="list"><span class="top">抵积分</span><span class="li">两人及以上立减500元／人</span></div>
+                           <div class="list pab30"><span class="top">抵用卷</span><span class="li">提前30天预订立减200元/人</span></div>-->
+                        <a href="#/selectcoupons" ng-click="couponsinit()">
+                            <div class="genre border-top">
+                                优惠券
+                                <i class="iconfont fr icon-right"></i>
+                                <span class="fr" id="chooseCoupons">
+                                    <i ng-if="SubTypeName!=''&& SubTypeName!=undefined &&SubTypeName!=null" class="ng-cloak">与{{SubTypeName}}不可同享</i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <div class="genre botb0 border-top" id="PointDiv">
+                            积分
+                            <div class="help" id="point-help">?</div>
+                            <i class="iconfont fr hook hook_h icon-round-on" id="checkPoint"
+                               ng-hide="Point<50 || ExchangeMoney<=0 || isMutexCoupons"></i>
+                            <span ng-if="Point>=50" class="fr ng-cloak">您有{{Point_text}}积分可抵 <b id="pointUseMoney">{{ExchangeMoney}}</b> 元</span>
+                            <span ng-if="Point<50" class="fr">您无可用积分</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main2" id="add_list" ng-if="AdditionalProduct.length>0">
+            <div class="main2_top">
+                <div class="main2_top_left"><i class="iconfont icon-biaoqian"></i>附加产品</div>
+            </div>
+            <div class="main4_m paddb20">
+                <div class="overhidd" id="additionList">
+                    <div class="main4_m1 additional_bottom" id="add_{{item.AdditionID}}"
+                         ng-repeat="item in AdditionalProduct" add-Finish>
+
+                            <div class="main4_m1_left">
+                                <p><span ng-bind="item.AdditionName" class="add-name"></span></p>
+
+                                <p><span>￥</span><span class="add-price ng-cloak">{{item.Price}}</span>/{{item.AdditionUnit}}
+                                </p>
+                            </div>
+                            <input type="hidden" value="{{item.AdditionID}}" class="add-id">
+                            <input type="hidden" value="{{item.AddType}}" class="add-type">
+
+                            <div class="main4_m1_right">
+                                <div class="j_remove" ng-click="AdditionRemove(item.AdditionID)">
+                                    <div class="main4_m1_right1"><i class="iconfont icon-jianhao"></i></div>
+                                </div>
+                                <div class="num">
+                                    <div class="main4_m1_right2 hover"
+                                         ng-if="item.AddType==11 || item.AddType==16 || item.AddType==19 || item.AddType==21">
+                                        {{item.MaxNum}}
+                                    </div>
+                                    <div class="main4_m1_right2 hover"
+                                         ng-if="item.AddType!=11 && item.AddType!=16 && item.AddType!=19 && item.AddType!=21">
+                                        0
+                                    </div>
+                                </div>
+                                <div class="j_add" ng-click="AdditionAdd(item.AdditionID,item.MaxNum)">
+                                    <div class="main4_m1_right3 sure"><i class="iconfont icon-jiahao"></i></div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="main4_m1_more" data-height='3'><i class="iconfont icon-bottom"></i></div>
+            </div>
+        </div>
+        <div class="main2">
+            <div class="main2_top border-bot">
+                <div class="main2_top_left"><i class="iconfont icon-leaving-msg"></i>备注</div>
+            </div>
+            <div class="main5_m">
+                <i class="iconfont icon-edit-on"></i>
+                <textarea placeholder="特殊条件请备注" contenteditable="true" id="remark" maxlength="150"></textarea>
+                <!--<div class="text_box" contenteditable="true">123</div>-->
+            </div>
+        </div>
+        <div class="main2" ng-show="isshowstoreinfo">
+            <div class="main2_top main6_top">
+                <div class="main2_top_left"><i class="iconfont icon-point-address"></i>服务门店</div>
+                <div class="main2_top_right">
+                    <a href="#/changestore" ng-click="changeStore()">
+                        <b>更换门店</b><i class="iconfont fr icon-right"></i>
+                    </a>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="main6_m">
+                <div class="main6_m2">
+                    <div class="main6_m2_left">
+                        <div class="left">
+                            <p id="addressName" class="address" ng-bind="SupplierStore.StoreName"></p>
+                            <input type="hidden" id="storeId" value="{{SupplierStore.StoreId}}" />
+                            <p ng-bind="SupplierStore.Address" id="addressDetail"></p>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <a href='tel:{{SupplierStore.Tel}}'><i class="iconfont icon-telphone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <img ng-if="SupplierStore.MapPic!='' && SupplierStore.MapPic!=null"
+                 ng-src="{{StoreMapDomain+SupplierStore.MapPic}}" id="storeMap" class="main6_map" />
+        </div>
+
+    </div>
+    <!-- 底部 开始 -->
+    <footer>
+        <div class="foot">
+            <span class="total">总价</span>
+            <span class="num ng-cloak" id="totalPrice">￥{{OrderTotalPrice}}</span>
+            <span class="detailed">明细<i class="iconfont icon-top"></i></span>
+            <a class="reservation-btn ng-cloak" ng-click="submitForm()" ondblclick="return false;">{{SubmitText}}</a>
+            <!--  <input type='submit' class="reservation-btn" id="btnSubmit" value='提交'/>-->
+        </div>
+    </footer>
+    <!--</form>-->
+    <!-- 底部 结束 -->
+    <!-- 明细 开始 -->
+    <div class="foot_detailed">
+        <div class="foot_detailed_top">
+            <i class="iconfont left icon-money"></i>
+            <span>费用明细</span>
+            <i class="iconfont right icon-guanbi"></i>
+        </div>
+        <div class="foot_detailed_m" id="foot_detailed_m">
+            <!--<div class="foot_detailed_li" id="add-safe">
+                <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">保险</span></div>
+
+            </div>-->
+            <div class="foot_detailed_li">
+                <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">团费</span></div>
+                <div class="foot_detailed_lipro"><span class="left">成人</span><span class="right">￥{{uzaiProductTourDate.AdultPrice}}*{{adultCount}}</span>
+                </div>
+                <div ng-if="childCount>0" class="foot_detailed_lipro"><span class="left">儿童</span><span class="right">￥{{uzaiProductTourDate.ChildPrice}}*{{childCount}}</span>
+                </div>
+            </div>
+            <div class="foot_detailed_li" id="additionalPro">
+                <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">附加产品</span></div>
+                <!--     <div class="foot_detailed_lipro"><span class="left">意外险</span><span class="right">￥3000*1</span></div>-->
+            </div>
+            <!--<div class="foot_detailed_li">
+            <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">发票</span></div>
+            <div class="foot_detailed_lipro"><span class="left">成人</span><span class="right">¥3000*1</span></div>
+        </div>-->
+            <div class="foot_detailed_li" ng-if="DetailPreferential!=undefined && IsStandard==false">
+                <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">优惠</span></div>
+
+                    <div class="foot_detailed_lipro"><span
+                            class="left">{{DetailPreferential.PreferentialName}}</span>
+                        <span class="right" >-￥{{DetailPreferential.MaxPreAmount/DetailPreferential.PreCount}}*{{DetailPreferential.PreCount}}</span>
+                    </div>
+
+            </div>
+            <div class="foot_detailed_li" ng-if="IsStandard" id="sPreferentialDetail">
+                <div class="foot_detailed_liname"><span class="ico">•</span><span class="pro">优惠</span></div>
+                    <div class="foot_detailed_lipro" ng-repeat="item in DetailPreferential" ng-if="!isUseCoupons"><span
+                            class="left">{{item.PreferentialName}}</span>
+                        <span class="right">-￥{{item.MaxPreAmount/item.PreCount}}*{{item.PreCount}}</span>
+                    </div>
+                    <div class="foot_detailed_lipro" ng-repeat="item in DetailPreferential"
+                         ng-if="isUseCoupons&&item.ParentTypeId!=2"><span class="left">{{item.PreferentialName}}</span>
+                        <span class="right">-￥{{item.MaxPreAmount/item.PreCount}}*{{item.PreCount}}</span>
+                    </div>
+
+
+                <div ng-if="Point>=50&&ExchangeMoney>0" class="foot_detailed_lipro" id="point-detail"><span
+                        class="left">积分</span><span
+                        class="right" id="point-detail-price"></span></div>
+                <div class="foot_detailed_lipro" id="coupons-detail"><span class="left">优惠券</span><span class="right"
+                                                                                                        id="coupons-detail-price"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 明细 开始 -->
+    <div class="bg_000"></div>
+    <div class="popup">
+        <span>订单创建成功！</span>
+    </div>
+    <!--遮罩层-->
+    <div class="cal-mask zHide"></div>
+    <!--弹窗内容-->
+    <div id="cal-pop1" class="hide">
+        <div class="pop-container">
+            <div class="title">
+                <i class="iconfont icon-ownpay"></i>
+            </div>
+            <h4>积分使用说明</h4>
+            <div class="tips">
+                您有{{Point}}积分，50积分=1元，支付完成前积分将被临时冻结。
+            </div>
+        </div>
+        <i class="iconfont icon-guanbi"></i>
+    </div>
+    <div class="payment-common-pop zHide" id="payment-common-pop1" edit-choose hidden>
+        <div class="container">
+            <div class="title"><i class="iconfont icon-bookingnotice"></i>
+            </div>
+            <h4>温馨提示</h4>
+            <div class="tips">
+                <p class="cen">订单尚未创建，返回将放弃填写。</p>
+            </div>
+            <div class="bottom border-top bottom_a">
+                <a class="cancel-btn son-box border-right" ng-click="BackProduct()">返回</a>
+                <a class="ok-btn son-box cancel-btn active">继续填写</a>
+            </div>
+        </div>
+    </div>
+        <!--订单弹窗开始-->
+        <div class="payment-common-pop commite-pop hide">
+            <div class="container">
+                <div class="title"><i class="iconfont icon-cost"></i></div>
+                <h4 class="commite-title">订单已提交</h4>
+                <div class="tips">
+                    <p class="cen commite-dec">由于库存发生变化，稍后我们的客服专员将确认库存并尽快与您取得联系</p>
+                </div>
+                <div class="bottom border-top">
+                    <a class="commite-sure " ng-click="BackOrderList()" href="#">确定</a>
+                    <a class="commite-back hide" ng-click="BackProduct()" href="#">返回</a>
+                </div>
+            </div>
+        </div>
+        <!--订单弹窗结束-->
+</div>
+<script src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/booking/booking.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/pagestatistics.js?v=20170922103322"></script>
+<script src="../../../r03.uzaicdn.com/content/hybrid/scripts/vstore/iswechat.js?v=20170922103322"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<meta charset="UTF-8">
+
+
+    <!-- 头部 开始 -->
+    <header class="hd">
+        <!-- 滑动的时候北京变由透明变实 -->
+        <a onclick="api.routerGoBack();" class="back"><i class="iconfont icon-back"></i></a> 当天购物信息
+    </header>
+    <!-- 头部 结束 -->
+    <div class="shoppinginformation J-router-content" id="j_shop_wrapper">
+        <div class="shoppingcon">
+            <div class="shoplist" find-purchase1>
+                <!-- 购物块开始 -->
+                <div class="shop" ng-repeat=" Shopping in ShoppingInfo">
+                    <i class="iconfont icon-shopping"></i>
+                    <div class="shopline">
+                        <span class="shoppre fl">
+                            <i class="dian"></i>
+                            <i class="zione">名</i>称:</span>
+                        <span class="shopafter fl">{{Shopping.Name}}</span>
+                    </div>
+                    <div class="shopline">
+                        <span class="shoppre fl">
+                            <i class="dian"></i>
+                            <i class="thone">所</i><i class="thtwo">在</i>地:</span>
+                        <span class="shopafter fl">{{Shopping.SeatOf}}</span>
+                    </div>
+                    <div class="shopline">
+                        <span class="shoppre fl">
+                            <i class="dian"></i>
+                            参观时间:</span>
+                        <span class="shopafter fl">{{Shopping.Time}}</span>
+                    </div>
+                    <div class="shopline">
+                        <span class="shoppre fl">
+                            <i class="dian"></i>
+                            购物内容:
+                        </span>
+                        <span class="shopafter fl">{{Shopping.Count}}</span>
+                    </div>
+                    <div class="shopline">
+                        <span class="shoppre fl">
+                            <i class="dian"></i>
+                            <i class="zione">说</i>明:
+                        </span>
+                        <span class="shopafter fl">{{Shopping.Explain}}</span>
+                    </div>
+
+
+                </div>
+                <!-- 购物块结束 -->
+            </div>
+            <!-- 购物块结束 -->
+        </div>
+
+
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/product/shoppinginformation.js?v=20170921183141"></script>

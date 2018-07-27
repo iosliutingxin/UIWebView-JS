@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html ng-app="benefitapp" lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <title>众信悠哉旅游网</title>
+    <meta name="keywords" content="众信悠哉旅游网" />
+    <meta name="description" content="众信悠哉旅游网" />
+    <link rel="Shortcut Icon" href="//r.uzaicdn.com/favicon-sj.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../r03.uzaicdn.com/content/hybrid/styles/product/preferential-activity.css?v=20170921183141" />
+</head>
+<body ng-controller="benefitdetail">
+<!--header1-->
+        <div class="preferential-header border-bot">
+            <i class="iconfont icon-back" ng-click="backpage();"></i>
+            <b>优惠活动</b>
+        </div>
+    <div class="all-perferential zHide" >
+        
+
+        <div class="perferential-activity" ng-repeat='addbenefit in additional track by $index' pre-last>
+            <div class="perferential-container bottom-distance">
+                <div class="title">
+                    <span class="left">
+                        <!--<i class="iconfont icon-discount"></i>-->
+                        <b ng-bind="addbenefit.BenefitTypeName"></b>
+                    </span>
+                <span class="right ">
+                        <i class="iconfont icon-bottom"></i>
+                    </span>
+            </div>
+            <div class="containers zHide border-top">
+                <ul class="conts">
+                    <li>
+                        <h4 class="names">活动名称：</h4>
+                        <span class="bank" ng-bind="addbenefit.BenefitName"></span>
+                    </li>
+                    <li>
+                        <h4 class="names clearfix">活动内容：</h4>
+                        <div class="explain" ng-bind="addbenefit.UzaiBenefitDesc">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="perferential-activity" ng-repeat='platform in platforms track by $index'>
+        <div class="perferential-container bottom-distance">
+            <div class="title">
+                <span class="left">
+                        <!--<i class="iconfont icon-discount"></i>-->
+                        <b ng-bind="platform.TypeName"></b>
+                    </span>
+                <span class="right ">
+                        <i class="iconfont icon-bottom"></i>
+                    </span>
+            </div>
+            <div class="containers zHide border-top">
+                <ul class="conts">
+                    <li>
+                        <h4 class="names">活动名称：</h4>
+                        <span class="bank" ng-bind="platform.Name"></span>
+                    </li>
+                    <li>
+                        <h4 class="names">活动时间：</h4>
+                        <span class="bank" ng-bind="platform.BeginEndDateText"></span>
+                    </li>
+                    <li>
+                        <h4 class="names clearfix">活动内容：</h4>
+                        <div class="explain" ng-bind="platform.Content">
+                        </div>
+                    </li>
+                    <li>
+                        <h4 class="names clearfix">适用团期：</h4>
+                        <div class="explain" ng-bind="platform.TourDatesText">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="perferential-activity" ng-repeat='uzaipoint in uzaipoints track by $index' pre-last>
+        <div class="perferential-container bottom-distance">
+            <div class="title">
+                <span class="left">
+                        <!--<i class="iconfont icon-discount"></i>-->
+                        <b ng-bind="uzaipoint.split('-')[0]"></b>
+                    </span>
+                <span class="right ">
+                        <i class="iconfont icon-bottom"></i>
+                    </span>
+            </div>
+            <div class="containers zHide border-top">
+                <ul class="conts">
+                    <li>
+                        <h4 class="names">活动名称：</h4>
+                        <span class="bank" ng-bind="uzaipoint.split('-')[0]"></span>
+                    </li>
+                    <li>
+                        <h4 class="names clearfix">活动内容：</h4>
+                        <div class="explain" ng-bind="uzaipoint.split('-')[1]">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--暂无优惠活动-->
+<div class="no-activity zHide">
+    <div class="bg">
+
+    </div>
+    <p>暂无优惠活动</p>
+</div>
+
+
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/jquery-2.1.1.min.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/font.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/api.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/app-bridge.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/libs/frame/angular/angular.min.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/product/preferential-activity.js?v=20170921183141"></script>
+<script type="text/javascript" src="../../../r03.uzaicdn.com/content/hybrid/scripts/common/pagestatistics.js?v=20170921183141"></script>
+    <script src="../../../r03.uzaicdn.com/content/hybrid/scripts/vstore/iswechat.js?v=20170921183141"></script>
+</body>
+
+</html>
