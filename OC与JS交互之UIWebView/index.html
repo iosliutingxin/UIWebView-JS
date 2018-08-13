@@ -36,18 +36,43 @@
             location.href = "rrcc://showSendNumber_msg_?13300001111&go climbing this weekend"
         }
         
-            </script>
+        //声明
+        function shareBlack(shareData) {
+            var title = shareData.title;
+            var imgUrl = shareData.imgUrl;
+            var link = shareData.link;
+            var result = shareData.result;
+            //do something
+            //这里模拟异步操作
+            setTimeout(function(){
+                       //2s之后，回调true分享成功
+                       result(true);
+                       }, 2000);
+        }
+        
+        
+    </script>
         
         
     </head>
     
     <!--网页具体内容-->
     <body>
-        
-        <a href="darkangel://smsLogin?username=12323123&code=892845">短信验证登录</a>
-
         <br/><br/>
+
+        <a href="javascript:void(0);" class="sharebtn" onclick="share('分享标题', 'http://cc.cocimg.com/api/uploads/170425/b2d6e7ea5b3172e6c39120b7bfd662fb.jpg', location.href)">分享活动，领30元红包</a>
         
+        <br/><br/>
+        <div onclick="alert(testAddMethod(6,5))">点击测试两数相加</div>
+        
+        <br/><br/>
+        <a href="javascript:void(0);" onclick="shareBlack({title: 'title',result: function(res) { //函数作为参数
+            alert(res);
+            }})">分享回调</a>
+        
+        <br/><br/>
+
+
         <div style="text-align: center;">
             <label>小黄：13300001111</label>
         </div>

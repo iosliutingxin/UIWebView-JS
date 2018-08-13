@@ -137,16 +137,16 @@
 }
 
 #pragma mark - UIWebViewDelegate
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)we333333bView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 
-    
-    NSString *requestString = request.URL.absoluteString.stringByRemovingPercentEncoding;
-   
-    //OC调用JS是基于协议拦截实现的 下面是相关操作
-    NSString *absolutePath = request.URL.absoluteString;
-    absolutePath = absolutePath.stringByRemovingPercentEncoding;
-    NSString *scheme = @"rrcc://";
-    NSString *schem =  request.URL.scheme;
+
+NSString *requestString = request.URL.absoluteString.stringByRemovingPercentEncoding;
+
+//OC调用JS是基于协议拦截实现的 下面是相关操作
+NSString *absolutePath = request.URL.absoluteString;
+absolutePath = absolutePath.stringByRemovingPercentEncoding;
+NSString *scheme = @"rrcc://";
+NSString *schem =  request.URL.scheme;
 //    if ([schem  isEqual: @"http"] || [schem  isEqual: @"https"] || [schem  isEqual: @"file"]) {
 //
 //                if ([absolutePath rangeOfString:@"devicetype" options:(NSCaseInsensitiveSearch)].location == NSNotFound) {
@@ -156,58 +156,58 @@
 //                }];
 //            }
 //    }
-    if ([absolutePath hasPrefix:scheme]) {
-        NSString *subPath = [absolutePath substringFromIndex:scheme.length];
+if ([absolutePath hasPrefix:scheme]) {
+    NSString *subPath = [absolutePath substringFromIndex:scheme.length];
+    
+    if ([subPath containsString:@"?"]) {//1个或多个参数
         
-        if ([subPath containsString:@"?"]) {//1个或多个参数
+        if ([subPath containsString:@"&"]) {//多个参数
+            NSArray *components = [subPath componentsSeparatedByString:@"?"];
             
-            if ([subPath containsString:@"&"]) {//多个参数
-                NSArray *components = [subPath componentsSeparatedByString:@"?"];
-                
-                NSString *methodName = [components firstObject];
-                
-                methodName = [methodName stringByReplacingOccurrencesOfString:@"_" withString:@":"];
-                SEL sel = NSSelectorFromString(methodName);
-
-                NSString *parameter = [components lastObject];
-                NSArray *params = [parameter componentsSeparatedByString:@"&"];
-                
-                if (params.count == 2) {
-                    if ([self respondsToSelector:sel]) {
-                        [self performSelector:sel withObject:[params firstObject] withObject:[params lastObject]];
-                    }
-                }
-                
-
-            } else {//1个参数
-                NSArray *components = [subPath componentsSeparatedByString:@"?"];
-                
-                NSString *methodName = [components firstObject];
-                methodName = [methodName stringByReplacingOccurrencesOfString:@"_" withString:@":"];
-                SEL sel = NSSelectorFromString(methodName);
-
-                NSString *parameter = [components lastObject];
-                
-                if ([self respondsToSelector:sel]) {
-                    [self performSelector:sel withObject:parameter];
-                }
-
-            }
-                
-        } else {//没有参数
-            NSString *methodName = [subPath stringByReplacingOccurrencesOfString:@"_" withString:@":"];
+            NSString *methodName = [components firstObject];
+            
+            methodName = [methodName stringByReplacingOccurrencesOfString:@"_" withString:@":"];
             SEL sel = NSSelectorFromString(methodName);
+
+            NSString *parameter = [components lastObject];
+            NSArray *params = [parameter componentsSeparatedByString:@"&"];
+            
+            if (params.count == 2) {
+                if ([self respondsToSelector:sel]) {
+                    [self performSelector:sel withObject:[params firstObject] withObject:[params lastObject]];
+                }
+            }
+            
+
+        } else {//1个参数
+            NSArray *components = [subPath componentsSeparatedByString:@"?"];
+            
+            NSString *methodName = [components firstObject];
+            methodName = [methodName stringByReplacingOccurrencesOfString:@"_" withString:@":"];
+            SEL sel = NSSelectorFromString(methodName);
+
+            NSString *parameter = [components lastObject];
             
             if ([self respondsToSelector:sel]) {
-                [self performSelector:sel];
+                [self performSelector:sel withObject:parameter];
             }
+
+        }
+        
+    } else {//没有参数
+        NSString *methodName = [subPath stringByReplacingOccurrencesOfString:@"_" withString:@":"];
+        SEL sel = NSSelectorFromString(methodName);
+        
+        if ([self respondsToSelector:sel]) {
+            [self performSelector:sel];
         }
     }
+}
+
     
-        
-    
-    
-    return YES;
+
+
+return YES;
 }
 
 

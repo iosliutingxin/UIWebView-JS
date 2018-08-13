@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WKview.h"
-
+#import "test_Webview.h"
 @interface AppDelegate ()
 
 @end
@@ -17,10 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    WKview *main = [[WKview alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
-//    self.window.rootViewController = nav;
-//    [self.window makeKeyAndVisible];
+    test_Webview *main = [[test_Webview alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
