@@ -25,49 +25,40 @@
     
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *controller = [[WKUserContentController alloc] init];
-    configuration.userContentController = controller;
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) configuration:configuration];
     self.webView.allowsBackForwardNavigationGestures = YES; //允许右滑返回上个链接，左滑前进
     self.webView.allowsLinkPreview = YES; //允许链接3D Touch
     self.webView.customUserAgent = @"WebViewDemo/1.0.0"; //自定义UA，UIWebView就没有此功能，后面会讲到通过其他方式实现
+    
     self.webView.UIDelegate = self;
     self.webView.navigationDelegate = self;
     [self.view addSubview:self.webView];
     
-  
-    //注入一个Cookie
-    WKUserScript *newCookieScript = [[WKUserScript alloc] initWithSource:@"document.cookie = 'DarkAngelCookie=DarkAngel;'" injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
-    [controller addUserScript:newCookieScript];
+    //添加js全局变量
+    WKUserScript *script = [[WKUserScript alloc] initWithSource:@"var interesting = 123;" injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    //页面加载完成立刻回调，获取页面上的所有Cookie
+    WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:@"                window.webkit.messageHandlers.currentCookies.postMessage(document.cookie);" injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    //alert Cookie
+    WKUserScript *alertCookieScript = [[WKUserScript alloc] initWithSource:@"alert(document.cookie);" injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
+    //添加自定义的cookie
+    WKUserScript *newCookieScript = [[WKUserScript alloc] initWithSource:@"                document.cookie = 'DarkAngelCookie=DarkAngel;'" injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
     
-  
-    
-    
-    //创建脚本
-    WKUserScript *script = [[WKUserScript alloc] initWithSource:@"alert(document.cookie);" injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:NO];
     //添加脚本
     [controller addUserScript:script];
-    
-    
+    [controller addUserScript:cookieScript];
+    [controller addUserScript:alertCookieScript];
+    [controller addUserScript:newCookieScript];
+  
+    configuration.userContentController = controller;
+
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
     
   
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    //创建timer
-    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(0, 0));
-    
-
-    //设置timer
-    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(self.timer, ^{
-        NSLog(@"---%@",[NSThread currentThread]);
-    });
-    
-    //启动
-    dispatch_resume(self.timer);
-    
+   
     
 }
 

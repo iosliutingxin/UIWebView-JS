@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WKview.h"
 #import "test_Webview.h"
+#import "CookierController.h"
+#import "WKViewModel.h"
 @interface AppDelegate ()
 
 @end
@@ -17,7 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    test_Webview *main = [[test_Webview alloc] init];
+    CookierController *main = [[CookierController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

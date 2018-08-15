@@ -16,6 +16,8 @@
 		5185CD21211D7BE200324DF3 /* test_Webview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5185CD20211D7BE200324DF3 /* test_Webview.m */; };
 		5194380221118A9D007EBCDD /* WKview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5194380121118A9D007EBCDD /* WKview.m */; };
 		51D603BD21008898005D5970 /* dataReasource.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51D603BC21008898005D5970 /* dataReasource.plist */; };
+		51F31F4021212EE40004CC33 /* CookierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F31F3F21212EE40004CC33 /* CookierController.m */; };
+		51F31F462121395D0004CC33 /* WKViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F31F452121395D0004CC33 /* WKViewModel.m */; };
 		CECE0D721D61A263007B7FE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE0D711D61A263007B7FE4 /* main.m */; };
 		CECE0D751D61A263007B7FE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE0D741D61A263007B7FE4 /* AppDelegate.m */; };
 		CECE0D781D61A263007B7FE4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECE0D771D61A263007B7FE4 /* ViewController.m */; };
@@ -41,6 +43,10 @@
 		5194380021118A9D007EBCDD /* WKview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKview.h; sourceTree = "<group>"; };
 		5194380121118A9D007EBCDD /* WKview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKview.m; sourceTree = "<group>"; };
 		51D603BC21008898005D5970 /* dataReasource.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dataReasource.plist; sourceTree = "<group>"; };
+		51F31F3E21212EE40004CC33 /* CookierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CookierController.h; sourceTree = "<group>"; };
+		51F31F3F21212EE40004CC33 /* CookierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookierController.m; sourceTree = "<group>"; };
+		51F31F442121395D0004CC33 /* WKViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKViewModel.h; sourceTree = "<group>"; };
+		51F31F452121395D0004CC33 /* WKViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKViewModel.m; sourceTree = "<group>"; };
 		CECE0D6D1D61A262007B7FE4 /* OC与JS交互之UIWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OC与JS交互之UIWebView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECE0D711D61A263007B7FE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CECE0D731D61A263007B7FE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +100,10 @@
 		CECE0D6F1D61A263007B7FE4 /* OC与JS交互之UIWebView */ = {
 			isa = PBXGroup;
 			children = (
+				51F31F442121395D0004CC33 /* WKViewModel.h */,
+				51F31F452121395D0004CC33 /* WKViewModel.m */,
+				51F31F3E21212EE40004CC33 /* CookierController.h */,
+				51F31F3F21212EE40004CC33 /* CookierController.m */,
 				5185CD1F211D7BE200324DF3 /* test_Webview.h */,
 				5185CD20211D7BE200324DF3 /* test_Webview.m */,
 				5101C8B72100829500E4C451 /* WebViewCache */,
@@ -206,7 +216,9 @@
 			files = (
 				5194380221118A9D007EBCDD /* WKview.m in Sources */,
 				5123A43420FEEBB300F39997 /* WebTool.m in Sources */,
+				51F31F4021212EE40004CC33 /* CookierController.m in Sources */,
 				CECE0D781D61A263007B7FE4 /* ViewController.m in Sources */,
+				51F31F462121395D0004CC33 /* WKViewModel.m in Sources */,
 				51600D8121084A3700ABF3D4 /* DownDate.m in Sources */,
 				5185CD21211D7BE200324DF3 /* test_Webview.m in Sources */,
 				51600D842108622000ABF3D4 /* hybridModel.m in Sources */,

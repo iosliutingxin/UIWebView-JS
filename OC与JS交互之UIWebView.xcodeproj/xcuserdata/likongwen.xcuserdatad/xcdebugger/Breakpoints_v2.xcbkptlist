@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/ViewController.m"
-            timestampString = "555588002.639061"
+            timestampString = "556007219.549508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.635046"
+            timestampString = "556007219.549593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.635438"
+            timestampString = "556007219.550092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.635702"
+            timestampString = "556007219.550525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.635944"
+            timestampString = "556007219.550926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.636173"
+            timestampString = "556007219.551365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WebTool.m"
-            timestampString = "555822271.636398"
+            timestampString = "556007219.551824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/ViewController.m"
-            timestampString = "555588002.640582"
+            timestampString = "556007219.5522569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/ViewController.m"
-            timestampString = "555588002.640632"
+            timestampString = "556007219.552358"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/ViewController.m"
-            timestampString = "555588002.640677"
+            timestampString = "556007219.552436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -330,60 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/ViewController.m"
-            timestampString = "555588002.640928"
+            timestampString = "556007219.552857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WKview.m"
-            timestampString = "555431225.853967"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-touchesBegan:withEvent:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WKview.m"
-            timestampString = "555431225.855077"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-showSendNumber:msg:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WKview.m"
-            timestampString = "555431225.855903"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-showName:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -421,27 +373,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/WKview.m"
-            timestampString = "555431225.85686"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/test_Webview.m"
-            timestampString = "555822271.636964"
+            timestampString = "555844474.636493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -457,7 +393,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/test_Webview.m"
-            timestampString = "555822271.6372271"
+            timestampString = "555844474.636718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -473,12 +409,12 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.926704"
+                  timestampString = "556007219.671765"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "400">
+                  offsetFromSymbolStart = "321">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -488,12 +424,12 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.9284559"
+                  timestampString = "556007219.675884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
                   endingLineNumber = "93"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "47">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -505,7 +441,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/test_Webview.m"
-            timestampString = "555822271.637441"
+            timestampString = "555844474.636773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
@@ -521,12 +457,12 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.9333611"
+                  timestampString = "556007219.683826"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
                   endingLineNumber = "84"
-                  offsetFromSymbolStart = "276">
+                  offsetFromSymbolStart = "221">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -536,7 +472,7 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.935191"
+                  timestampString = "556007219.686897"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "85"
@@ -553,7 +489,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/test_Webview.m"
-            timestampString = "555822271.637648"
+            timestampString = "555844474.636821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -569,7 +505,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/test_Webview.m"
-            timestampString = "555822271.637845"
+            timestampString = "555844474.636867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -585,12 +521,12 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.9469301"
+                  timestampString = "556007219.701931"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
                   endingLineNumber = "72"
-                  offsetFromSymbolStart = "152">
+                  offsetFromSymbolStart = "121">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -600,14 +536,62 @@
                   moduleName = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/likongwen/Desktop/%E5%8D%B3%E6%97%B6%E6%9B%B4%E6%96%B0/OC-JS-UIWebView-master/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92%E4%B9%8BUIWebView/test_Webview.m"
-                  timestampString = "555820127.949272"
+                  timestampString = "556007219.70548"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "73"
                   endingLineNumber = "73"
-                  offsetFromSymbolStart = "68">
+                  offsetFromSymbolStart = "39">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/CookierController.m"
+            timestampString = "556007219.553092"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/CookierController.m"
+            timestampString = "556007219.5535851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-webViewDidFinishLoad:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OC&#x4e0e;JS&#x4ea4;&#x4e92;&#x4e4b;UIWebView/CookierController.m"
+            timestampString = "556007219.553949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-webViewDidFinishLoad:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
