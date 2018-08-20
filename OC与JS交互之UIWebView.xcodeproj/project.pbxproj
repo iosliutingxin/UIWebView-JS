@@ -43,6 +43,7 @@
 		5194380021118A9D007EBCDD /* WKview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKview.h; sourceTree = "<group>"; };
 		5194380121118A9D007EBCDD /* WKview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKview.m; sourceTree = "<group>"; };
 		51D603BC21008898005D5970 /* dataReasource.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dataReasource.plist; sourceTree = "<group>"; };
+		51E1BF8721240EE9007FDF52 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		51F31F3E21212EE40004CC33 /* CookierController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CookierController.h; sourceTree = "<group>"; };
 		51F31F3F21212EE40004CC33 /* CookierController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookierController.m; sourceTree = "<group>"; };
 		51F31F442121395D0004CC33 /* WKViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKViewModel.h; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 				51600D7F21084A3700ABF3D4 /* DownDate.h */,
 				51600D8021084A3700ABF3D4 /* DownDate.m */,
 				51D603BC21008898005D5970 /* dataReasource.plist */,
+				51E1BF8721240EE9007FDF52 /* PrefixHeader.pch */,
 			);
 			path = "OC与JS交互之UIWebView";
 			sourceTree = "<group>";
@@ -337,6 +339,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MN292YP6B4;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "OC与JS交互之UIWebView/PrefixHeader.pch";
 				INFOPLIST_FILE = "OC与JS交互之UIWebView/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -350,6 +354,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MN292YP6B4;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "OC与JS交互之UIWebView/PrefixHeader.pch";
 				INFOPLIST_FILE = "OC与JS交互之UIWebView/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

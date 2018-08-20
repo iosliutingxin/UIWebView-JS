@@ -19,7 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    CookierController *main = [[CookierController alloc] init];
+    WKview *main = [[WKview alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

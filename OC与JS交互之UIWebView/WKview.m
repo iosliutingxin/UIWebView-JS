@@ -26,7 +26,7 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *controller = [[WKUserContentController alloc] init];
     
-    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-100) configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, AScreenWidtht, AScreenHeight-100) configuration:configuration];
     self.webView.allowsBackForwardNavigationGestures = YES; //允许右滑返回上个链接，左滑前进
     self.webView.allowsLinkPreview = YES; //允许链接3D Touch
     self.webView.customUserAgent = @"WebViewDemo/1.0.0"; //自定义UA，UIWebView就没有此功能，后面会讲到通过其他方式实现
@@ -53,14 +53,24 @@
     configuration.userContentController = controller;
 
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]]]];
-    
+
   
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-   
+    [self testEvaluateJavaScript];
     
 }
+
+//测试oc调JS
+- (void)testEvaluateJavaScript {
+    
+    [self.webView evaluateJavaScript:@"document.cookie" completionHandler:^(id _Nullable cookies, NSError * _Nullable error) {
+        NSLog(@"调用evaluateJavaScript异步获取cookie：%@", cookies);
+    }];
+    
+}
+
 
 #pragma mark - JS调用OC方法列表
 - (void)showMobile {
@@ -84,6 +94,44 @@
     [[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(nonnull void (^)(void))completionHandler
+{
+    //js 里面的alert实现，如果不实现，网页的alert函数无效
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
+    //  js 里面的alert实现，如果不实现，网页的alert函数无效  ,
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        completionHandler(NO);
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        completionHandler(YES);
+    }]];
+    [self presentViewController:alertController animated:YES completion:^{}];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *))completionHandler
+{
+    //用于和JS交互，弹出输入框
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        completionHandler(nil);
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *textField = alertController.textFields.firstObject;
+        completionHandler(textField.text);
+    }]];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = defaultText;
+    }];
+    [self presentViewController:alertController animated:YES completion:NULL];
+}
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
     NSString *absolutePath = navigationAction.request.URL.absoluteString;
