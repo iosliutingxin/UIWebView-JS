@@ -60,7 +60,7 @@
 
 - (void)convertJSFunctionsToOCMethods
 {
-    //测试1
+    //测试
     //获取该UIWebview的javascript上下文
     //self持有jsContext
     //@property (nonatomic, strong) JSContext *jsContext;
